@@ -1,0 +1,32 @@
+{
+  "name": "Vite React Dev",
+
+  "context": "..",
+
+  "dockerComposeFile": "../docker-compose.yml",
+
+  "service": "frontend",
+
+  "workspaceFolder": "/app",
+
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "naumovs.color-highlight",
+    "github.copilot",
+    "spywhere.guides",
+    "sandipchitale.vscode-indent-line",
+    "visualstudioexptteam.vscodeintellicode",
+    "zignd.html-css-class-completion",
+    "pkief.material-icon-theme",
+    "christian-kohler.path-intellisense",
+    "styled-components.vscode-styled-components",
+    "daylerees.rainglow"
+  ]
+}
