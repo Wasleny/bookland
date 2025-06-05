@@ -14,6 +14,6 @@ export const managementMenu = (changeName: boolean) => [
 
 export const userMenu = [
   { name: "Perfil", to: "" },
-  { name: "Critérios de Avaliação", to: "" },
+  { name: "Critérios de Avaliação", to: "/rating-criteria" },
   { name: "Sair", to: "" },
 ];

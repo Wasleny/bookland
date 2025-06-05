@@ -16,19 +16,21 @@ const variantToElement = {
   ctaSecondary: 'p',
   searchTitle: 'h2',
   legend: 'p',
-  link: 'p'
+  link: 'p',
+  bodyItalic: 'p'
 } as const;
 
 interface TypographyProps {
   children: React.ReactNode;
   variant: Variant;
+  onClick?: () => void
 }
 
-const Typography = ({ children, variant }: TypographyProps) => {
+const Typography = ({ children, variant, onClick }: TypographyProps) => {
   const Component = variantToElement[variant];
 
   return (
-    <StyledTypography as={Component} variant={variant}>
+    <StyledTypography as={Component} variant={variant} onClick={onClick}>
       {children}
     </StyledTypography>
   );

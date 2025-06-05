@@ -117,6 +117,13 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           color: ${theme.colors.accent};
           font-style: italic;
           font-weight: ${theme.fontWeights.bold};
+          cursor: pointer;
+        `;
+
+      case "bodyItalic":
+        return css`
+          font-size: ${theme.fontSizes.base};
+          font-style: italic;
         `;
 
       default:

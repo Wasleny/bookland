@@ -24,7 +24,8 @@ export type Variant =
   | "ctaTitle"
   | "searchTitle"
   | "legend"
-  | 'link';
+  | 'link'
+  | 'bodyItalic';
 export type ButtonVariant =
   | "submit"
   | "show"
