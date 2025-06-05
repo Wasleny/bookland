@@ -12,7 +12,7 @@ const users: UserProps[] = [
     ratingCount: 52,
     reviewCount: 12,
     averageRating: 4.2,
-    avatarUrl: "images/avatars/alice_readz.svg",
+    avatarUrl: "/images/avatars/alice_readz.svg",
     role: "admin",
   },
   {
@@ -26,7 +26,7 @@ const users: UserProps[] = [
     ratingCount: 87,
     reviewCount: 20,
     averageRating: 3.8,
-    avatarUrl: "images/avatars/brunobookworm.svg",
+    avatarUrl: "/images/avatars/brunobookworm.svg",
     role: "user",
   },
   {
@@ -40,7 +40,7 @@ const users: UserProps[] = [
     ratingCount: 30,
     reviewCount: 8,
     averageRating: 4.6,
-    avatarUrl: "images/avatars/claralivros.svg",
+    avatarUrl: "/images/avatars/claralivros.svg",
     role: "user",
   },
   {
@@ -54,7 +54,7 @@ const users: UserProps[] = [
     ratingCount: 104,
     reviewCount: 34,
     averageRating: 4.1,
-    avatarUrl: "images/avatars/diego_dev_reads.svg",
+    avatarUrl: "/images/avatars/diego_dev_reads.svg",
     role: "user",
   },
   {
@@ -68,7 +68,7 @@ const users: UserProps[] = [
     ratingCount: 41,
     reviewCount: 15,
     averageRating: 4.4,
-    avatarUrl: "images/avatars/eduarda.lima.svg",
+    avatarUrl: "/images/avatars/eduarda.lima.svg",
     role: "user",
   },
   {
@@ -82,7 +82,7 @@ const users: UserProps[] = [
     ratingCount: 70,
     reviewCount: 22,
     averageRating: 4.0,
-    avatarUrl: "images/avatars/felipe_reads.svg",
+    avatarUrl: "/images/avatars/felipe_reads.svg",
     role: "user",
   },
   {
@@ -96,7 +96,7 @@ const users: UserProps[] = [
     ratingCount: 18,
     reviewCount: 4,
     averageRating: 4.9,
-    avatarUrl: "images/avatars/gabishelf.svg",
+    avatarUrl: "/images/avatars/gabishelf.svg",
     role: "user",
   },
   {
@@ -110,7 +110,7 @@ const users: UserProps[] = [
     ratingCount: 110,
     reviewCount: 60,
     averageRating: 3.5,
-    avatarUrl: "images/avatars/henrique.reads.svg",
+    avatarUrl: "/images/avatars/henrique.reads.svg",
     role: "user",
   },
   {
@@ -124,7 +124,7 @@ const users: UserProps[] = [
     ratingCount: 65,
     reviewCount: 21,
     averageRating: 4.3,
-    avatarUrl: "images/avatars/isaleitora.svg",
+    avatarUrl: "/images/avatars/isaleitora.svg",
     role: "user",
   },
   {
@@ -138,7 +138,7 @@ const users: UserProps[] = [
     ratingCount: 33,
     reviewCount: 9,
     averageRating: 3.7,
-    avatarUrl: "images/avatars/lucas_the_reader.svg",
+    avatarUrl: "/images/avatars/lucas_the_reader.svg",
     role: "user",
   },
 ];

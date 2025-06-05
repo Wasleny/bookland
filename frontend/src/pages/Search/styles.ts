@@ -18,9 +18,13 @@ export const SearchResults = styled.div<{ breakpoint: Breakpoint }>`
 
   > div {
     display: flex;
-    flex: 1 1 0;
     flex-direction: column;
     gap: ${({ theme }) => theme.spacing.md};
+    flex: 0 1 auto;
+
+    &:not(:only-child) {
+      flex: 1 1 0;
+    }
 
     .card-head {
       display: flex;

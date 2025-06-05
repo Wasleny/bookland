@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ requireAdmin }: ProtectedRouteProps) => {
 
   if (isLoading) return <div>Carregando...</div>;
 
-  if (!currentUser) return <Navigate to="login" />;
+  if (!currentUser) return <Navigate to="/login" />;
 
   if (requireAdmin && currentUser.role !== "admin") return <Navigate to="/" />;
 

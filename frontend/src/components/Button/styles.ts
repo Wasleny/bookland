@@ -104,6 +104,20 @@ export const StyledButton = styled.button<StyledButtonProps>`
           }
         `;
 
+      case "remove":
+        return css`
+          background-color: ${theme.colors.alert};
+          color: ${theme.colors.textOnInverted};
+          font-weight: ${theme.fontWeights.bold};
+          padding: ${theme.spacing.ssm} ${theme.spacing.xl};
+
+          :hover {
+            background-color: ${theme.colors.surface};
+            border-color: ${theme.colors.alert};
+            color: ${theme.colors.alert};
+          }
+        `;
+
       default:
         break;
     }
