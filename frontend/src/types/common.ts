@@ -24,8 +24,8 @@ export type Variant =
   | "ctaTitle"
   | "searchTitle"
   | "legend"
-  | 'link'
-  | 'bodyItalic';
+  | "link"
+  | "bodyItalic";
 export type ButtonVariant =
   | "submit"
   | "show"
@@ -34,7 +34,7 @@ export type ButtonVariant =
   | "remove"
   | "add"
   | "ghost";
-export type InputType = "text" | "search" | "email" | "password";
+export type InputType = "text" | "search" | "email" | "password" | "number";
 export type Width = keyof Theme["sizes"];
 export type Spacing = keyof Theme["spacing"];
 export type BorderRadius = keyof Theme["radii"];
