@@ -1,6 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import type { UserBookInteractionProps } from "../../types/userBookInteraction";
 import Typography from "../Typography";
 import Card from "../Card";
 import Button from "../Button";
@@ -16,10 +15,11 @@ import { useNavigate } from "react-router";
 import Cover from "../Cover";
 import Input from "../Form/Input";
 import { ErrorMessage } from "../../pages/styles";
+import type { ReviewProps } from "../../types/review";
 
 const CurrentReadings = () => {
   const [userCurrentReadings, setUserCurrentReadings] = useState<
-    UserBookInteractionProps[]
+    ReviewProps[]
   >([]);
   const [newProgress, setNewProgress] = useState<string>("");
   const [idBook, setIdBook] = useState<string>();
@@ -34,7 +34,7 @@ const CurrentReadings = () => {
       setUserCurrentReadings(
         usersReadings.filter(
           (reading) =>
-            reading.userId === currentUser?.id && reading.status === "reading"
+            reading.user.id === currentUser?.id && reading.status === "reading"
         )
       );
     };

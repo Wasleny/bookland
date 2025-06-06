@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import type { Spacing } from "../../types/common";
 
-export const StyledRating = styled.div<{ strokeWidth: number }>`
+export const StyledRating = styled.div<{ strokeWidth: number, gap: Spacing }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9,7 +10,7 @@ export const StyledRating = styled.div<{ strokeWidth: number }>`
   > div {
     display: flex;
     flex-direction: row;
-    gap: ${({ theme }) => theme.spacing.xs};
+    gap: ${({ theme, gap }) => theme.spacing[gap]};
     
   }
 

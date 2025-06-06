@@ -71,7 +71,6 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
 
       case "searchTitle":
         return css`
-          font-family: ${theme.fonts.base};
           font-weight: ${theme.fontWeights.bold};
           font-size: ${theme.fontSizes.xl};
         `;
@@ -124,6 +123,30 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
         return css`
           font-size: ${theme.fontSizes.base};
           font-style: italic;
+        `;
+
+      case "authorName":
+        return css`
+          font-size: ${theme.fontSizes.base};
+          text-transform: uppercase;
+        `;
+
+      case "review":
+        return css`
+          font-size: ${theme.fontSizes.base};
+          font-family: ${theme.fonts.reading};
+        `;
+
+      case "editionTitle":
+        return css`
+          font-size: ${theme.fontSizes.base};
+          font-weight: ${theme.fontWeights.bold};
+        `;
+
+      case "avatarLegend":
+        return css`
+          opacity: 50%;
+          font-size: ${theme.fontSizes.sm};
         `;
 
       default:

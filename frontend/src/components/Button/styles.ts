@@ -1,18 +1,22 @@
 import styled from "@emotion/styled";
-import type { BorderRadius, ButtonVariant } from "../../types/common";
+import type { BorderRadius, ButtonVariant, Colors } from "../../types/common";
 import { css } from "@emotion/react";
 
 interface StyledButtonProps {
   variant: ButtonVariant;
   bRadius: BorderRadius;
+  color?: Colors;
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
   font-family: ${({ theme }) => theme.fonts.ui};
   border-radius: ${({ theme, bRadius }) => theme.radii[bRadius]};
-  border: ${({ theme }) => theme.borders.thick} transparent;
+  border: ${({ theme }) => theme.borders.thick};
+  border-color: ${({ theme, color }) =>
+    color ? theme.colors[color] : "transparent"};
   font-size: ${({ theme }) => theme.fontSizes.base};
-  color: ${({ theme }) => theme.colors.textOnInverted};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.textOnInverted};
   padding: ${({ theme }) => theme.spacing.sm};
   text-transform: uppercase;
   text-align: center;
@@ -26,7 +30,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
     width: ${({ theme }) => theme.sizes.full};
   }
 
-  ${({ variant, theme }) => {
+  ${({ variant, color, theme }) => {
     switch (variant) {
       case "submit":
         return css`
@@ -115,6 +119,20 @@ export const StyledButton = styled.button<StyledButtonProps>`
             background-color: ${theme.colors.surface};
             border-color: ${theme.colors.alert};
             color: ${theme.colors.alert};
+          }
+        `;
+
+      case "outline":
+        return css`
+          background-color: transparent;
+          color: ${color ? theme.colors[color] : theme.colors.text};
+          font-weight: ${theme.fontWeights.semibold};
+          padding: ${theme.spacing.md};
+          border-color: ${color ? theme.colors[color] : theme.colors.backgroundInverted};
+
+          :hover {
+            background-color: ${color ? theme.colors[color] : theme.colors.backgroundInverted};
+            color: ${theme.colors.textOnInverted};
           }
         `;
 

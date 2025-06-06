@@ -25,7 +25,11 @@ export type Variant =
   | "searchTitle"
   | "legend"
   | "link"
-  | "bodyItalic";
+  | "bodyItalic"
+  | "authorName"
+  | "review"
+  | "editionTitle"
+  | "avatarLegend";
 export type ButtonVariant =
   | "submit"
   | "show"
@@ -33,9 +37,12 @@ export type ButtonVariant =
   | "search"
   | "remove"
   | "add"
-  | "ghost";
+  | "ghost"
+  | "outline";
 export type InputType = "text" | "search" | "email" | "password" | "number";
 export type Width = keyof Theme["sizes"];
 export type Spacing = keyof Theme["spacing"];
 export type BorderRadius = keyof Theme["radii"];
 export type Breakpoint = keyof Theme["breakpoints"];
+export type BadgeType = "genre" | "trope";
+export type Colors = keyof Theme["colors"];

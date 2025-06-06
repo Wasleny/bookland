@@ -1,5 +1,5 @@
 import type React from "react";
-import type { BorderRadius, ButtonVariant } from "../../types/common";
+import type { BorderRadius, ButtonVariant, Colors } from "../../types/common";
 import { StyledButton } from "./styles";
 
 const variantToElement = {
@@ -10,6 +10,7 @@ const variantToElement = {
   remove: "button",
   add: "button",
   ghost: "a",
+  outline: "button",
 } as const;
 
 interface ButtonProps {
@@ -17,14 +18,29 @@ interface ButtonProps {
   variant: ButtonVariant;
   borderRadius?: BorderRadius;
   onClick?: () => void;
-  type?: 'submit'
+  type?: "submit";
+  color?: Colors;
 }
 
-const Button = ({ children, borderRadius = "md", variant, onClick, type }: ButtonProps) => {
+const Button = ({
+  children,
+  borderRadius = "md",
+  variant,
+  onClick,
+  type,
+  color,
+}: ButtonProps) => {
   const Component = variantToElement[variant];
 
   return (
-    <StyledButton type={type} as={Component} bRadius={borderRadius} variant={variant} onClick={onClick}>
+    <StyledButton
+      color={color}
+      type={type}
+      as={Component}
+      bRadius={borderRadius}
+      variant={variant}
+      onClick={onClick}
+    >
       {children}
     </StyledButton>
   );
