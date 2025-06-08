@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import type {
+  AlignItems,
   Breakpoint,
   FlexDirection,
   JustifyContent,
@@ -15,6 +16,7 @@ interface StyledCardProps {
   width: Width | null;
   gap: Spacing | null;
   justifyContent: JustifyContent | null;
+  alignItems: AlignItems | null
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
@@ -23,11 +25,12 @@ display: flex;
     `${theme.spacing[verticalPadding]} ${theme.spacing[horizontalPadding]}`};
   background-color: ${({ theme }) => theme.colors.surface};
   text-align: center;
-  min-width: ${({ theme }) => theme.sizes.lg};
+  min-width: ${({ theme, width }) => width ? theme.sizes.lg : ''};
   width: ${({ theme, width }) => (width ? theme.sizes[width] : "fit-content")};
   flex-direction: ${({ flexDirection }) => flexDirection};
   gap: ${({ gap, theme }) => (gap ? theme.spacing[gap] : null)};
   justify-content: ${({ justifyContent }) => justifyContent};
+  align-items: ${({ alignItems }) => alignItems};
 
   @media screen and (max-width: ${({ theme, breakpoint }) => theme.breakpoints[breakpoint]}) {
     width: 100%;

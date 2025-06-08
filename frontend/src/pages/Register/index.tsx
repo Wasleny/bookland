@@ -3,10 +3,11 @@ import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router";
 import Card from "../../components/Card";
 import Typography from "../../components/Typography";
-import { ErrorMessage, StyledMain } from "../styles";
+import { StyledMain } from "../styles";
 import Input from "../../components/Form/Input";
 import Button from "../../components/Button";
 import { normalizeText } from "../../utils/normalizeText";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -48,10 +49,10 @@ const Register = () => {
 
   return (
     <StyledMain>
-      <Card verticalPadding="lg" horizontalPadding="xl">
+      <Card verticalPadding="lg" horizontalPadding="xl" width='lg'>
         <Typography variant="h1">Cadastrar</Typography>
 
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ErrorMessage error={error} />
 
         <form onSubmit={handleSubmit}>
           <Input

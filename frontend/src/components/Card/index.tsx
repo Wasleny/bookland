@@ -1,5 +1,6 @@
 import type React from "react";
 import type {
+  AlignItems,
   Breakpoint,
   FlexDirection,
   JustifyContent,
@@ -17,6 +18,8 @@ interface CardProps {
   width?: Width | null;
   gap?: Spacing | null;
   justifyContent?: JustifyContent | null;
+  title?: string;
+  alignItems?: AlignItems | null
 }
 
 const Card = ({
@@ -28,6 +31,8 @@ const Card = ({
   width = null,
   gap = null,
   justifyContent = null,
+  title,
+  alignItems = null
 }: CardProps) => {
   return (
     <StyledCard
@@ -38,6 +43,8 @@ const Card = ({
       width={width}
       gap={gap}
       justifyContent={justifyContent}
+      title={title}
+      alignItems={alignItems}
     >
       {children}
     </StyledCard>

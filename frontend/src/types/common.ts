@@ -48,3 +48,4 @@ export type BadgeType = "genre" | "trope";
 export type Colors = keyof Theme["colors"];
 export type FlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type JustifyContent = 'center' | 'space-between' | 'start' | 'end';
+export type AlignItems = 'center' | 'start' | 'end';

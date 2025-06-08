@@ -6,10 +6,12 @@ import { useAuth } from "../../hooks/useAuth";
 import { useBooks } from "../../hooks/useBooks";
 import type { ReviewProps } from "../../types/review";
 import Card from "../../components/Card";
+import BookBadges from "../../components/BookBadges";
+import NotFound from "../../components/NotFound";
 
 const RatingBook = () => {
   const { id } = useParams<{ id: string }>();
-  const { getBook, getUserReadings } = useBooks();
+  const { getBook, getUserReadings, isLoading } = useBooks();
   const [book, setBook] = useState<BookProps | null>();
   const [userReadings, setUserReadings] = useState<ReviewProps[]>([]);
   const { currentUser } = useAuth();
@@ -22,13 +24,24 @@ const RatingBook = () => {
     }
   }, [currentUser, id, getBook, getUserReadings]);
 
-  return (
+  useEffect(() => {
+    if (id) {
+      setBook(getBook(id) ?? null);
+    }
+  }, [id, getBook]);
+
+  if (isLoading)
+    return <Typography variant="body">Carregando livro...</Typography>;
+
+  return book ? (
     <>
       <Typography variant="title">{book?.title}</Typography>
       <Card>
-        <></>
+        <BookBadges book={book} />
       </Card>
     </>
+  ) : (
+    <NotFound />
   );
 };
 

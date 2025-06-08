@@ -3,20 +3,11 @@ import { useAuth } from "../../hooks/useAuth";
 import Typography from "../Typography";
 import Card from "../Card";
 import Button from "../Button";
-import {
-  Progress,
-  ProgressBarContainer,
-  Readings,
-  StyledSection,
-  UpdateProcessForm,
-} from "./styles";
+import { StyledSection } from "./styles";
 import mockReviews from "../../mocks/mockReviews";
-import { useNavigate } from "react-router";
-import Cover from "../Cover";
-import Input from "../Form/Input";
-import { ErrorMessage } from "../../pages/styles";
 import type { ReviewProps } from "../../types/review";
-import Modal from "../Modal";
+import ModalUpdateProgress from "./ModalUpdateProgress";
+import Readings from "./Readings";
 
 const CurrentReadings = () => {
   const [userCurrentReadings, setUserCurrentReadings] = useState<ReviewProps[]>(
@@ -24,11 +15,10 @@ const CurrentReadings = () => {
   );
   const [newProgress, setNewProgress] = useState<string>("");
   const [idBook, setIdBook] = useState<string>();
-  const [title, setTitle] = useState<string>();
+  const [title, setTitle] = useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [error, setError] = useState("");
   const { currentUser } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getCurrentReadings = () => {
@@ -85,52 +75,23 @@ const CurrentReadings = () => {
       <div>
         {userCurrentReadings.length > 0 ? (
           <>
-            <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
-              {error && <ErrorMessage>{error}</ErrorMessage>}
-              <UpdateProcessForm onSubmit={onUpdate}>
-                <Typography variant="h2">{title}</Typography>
-                <Input
-                  id="update-progress"
-                  label="Progresso"
-                  onChange={(e) => setNewProgress(e.target.value)}
-                  type="number"
-                  value={newProgress}
-                />
-                <Button variant="submit" type="submit">
-                  Atualizar
-                </Button>
-              </UpdateProcessForm>
-            </Modal>
+            <ModalUpdateProgress
+              error={error}
+              modalIsOpen={modalIsOpen}
+              newProgress={newProgress}
+              onClose={() => setModalIsOpen(false)}
+              onUpdate={onUpdate}
+              setNewProgress={setNewProgress}
+              title={title}
+            />
 
-            <Readings>
-              {userCurrentReadings.map((item) => (
-                <article key={item.book.title} title={item.book.title}>
-                  <Cover
-                    onClick={() => navigate(`/book/${item.book.id}`)}
-                    path={item.book.cover}
-                    size="sm"
-                    alt={`Capa do livro ${item.book.title}`}
-                  />
-                  <Typography variant="h3">{item.book.title}</Typography>
-                  <Typography variant="h4">{item.book.authors}</Typography>
-                  <div>
-                    <ProgressBarContainer>
-                      <Progress progress={item.progress ? item.progress : 0} />
-                    </ProgressBarContainer>
-                    <Typography variant="body">{item.progress}%</Typography>
-                  </div>
-                  <Button
-                    variant="edit"
-                    onClick={() => handleUpdate(item.book.id, item.book.title)}
-                  >
-                    Atualizar Progresso
-                  </Button>
-                </article>
-              ))}
-            </Readings>
+            <Readings
+              handleUpdate={handleUpdate}
+              userCurrentReadings={userCurrentReadings}
+            />
           </>
         ) : (
-          <Card width='full' gap='lg'>
+          <Card width="full" gap="lg">
             <Typography variant="h3">
               Você ainda não começou nenhuma leitura.
             </Typography>

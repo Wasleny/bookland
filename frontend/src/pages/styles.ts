@@ -10,10 +10,3 @@ export const StyledMain = styled.main`
     justify-content: end;
   }
 `;
-
-export const ErrorMessage = styled.div`
-  background-color: ${({ theme }) => theme.colors.alertSoft};
-  padding: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  border-radius: ${({ theme }) => theme.radii.lg};
-`;
