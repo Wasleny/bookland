@@ -10,21 +10,22 @@ import {
   StyledSection,
   UpdateProcessForm,
 } from "./styles";
-import usersReadings from "../../mocks/mockUsersReadings";
+import mockReviews from "../../mocks/mockReviews";
 import { useNavigate } from "react-router";
 import Cover from "../Cover";
 import Input from "../Form/Input";
 import { ErrorMessage } from "../../pages/styles";
 import type { ReviewProps } from "../../types/review";
+import Modal from "../Modal";
 
 const CurrentReadings = () => {
-  const [userCurrentReadings, setUserCurrentReadings] = useState<
-    ReviewProps[]
-  >([]);
+  const [userCurrentReadings, setUserCurrentReadings] = useState<ReviewProps[]>(
+    []
+  );
   const [newProgress, setNewProgress] = useState<string>("");
   const [idBook, setIdBook] = useState<string>();
   const [title, setTitle] = useState<string>();
-  const [formIsOpen, setFormIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [error, setError] = useState("");
   const { currentUser } = useAuth();
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const CurrentReadings = () => {
   useEffect(() => {
     const getCurrentReadings = () => {
       setUserCurrentReadings(
-        usersReadings.filter(
+        mockReviews.filter(
           (reading) =>
             reading.user.id === currentUser?.id && reading.status === "reading"
         )
@@ -45,7 +46,7 @@ const CurrentReadings = () => {
   const handleUpdate = (idBook: string, titleBook: string) => {
     setIdBook(idBook);
     setTitle(titleBook);
-    setFormIsOpen(true);
+    setModalIsOpen(true);
     setError("");
   };
 
@@ -75,7 +76,7 @@ const CurrentReadings = () => {
     setTitle("");
     setIdBook("");
     setNewProgress("");
-    setFormIsOpen(false);
+    setModalIsOpen(false);
   };
 
   return (
@@ -84,8 +85,8 @@ const CurrentReadings = () => {
       <div>
         {userCurrentReadings.length > 0 ? (
           <>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            {formIsOpen && (
+            <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+              {error && <ErrorMessage>{error}</ErrorMessage>}
               <UpdateProcessForm onSubmit={onUpdate}>
                 <Typography variant="h2">{title}</Typography>
                 <Input
@@ -99,7 +100,7 @@ const CurrentReadings = () => {
                   Atualizar
                 </Button>
               </UpdateProcessForm>
-            )}
+            </Modal>
 
             <Readings>
               {userCurrentReadings.map((item) => (

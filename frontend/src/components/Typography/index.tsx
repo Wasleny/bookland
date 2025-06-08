@@ -16,7 +16,7 @@ const variantToElement = {
   ctaSecondary: "p",
   searchTitle: "h2",
   legend: "p",
-  link: "p",
+  link: "a",
   bodyItalic: "p",
   authorName: "h2",
   review: "p",

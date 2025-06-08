@@ -32,8 +32,9 @@ export const SearchResults = styled.div<{ breakpoint: Breakpoint }>`
       gap: ${({ theme }) => theme.spacing.md};
 
       > div {
-        > p {
+        > a {
           margin-bottom: 1rem;
+          display: block;
         }
       }
     }

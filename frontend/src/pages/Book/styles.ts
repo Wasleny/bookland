@@ -17,58 +17,6 @@ export const BookSection = styled.section`
   }
 `;
 
-export const BookActions = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.lg};
-  align-items: center;
-
-  > div:first-of-type {
-    background-color: ${({ theme }) => theme.colors.surface};
-    padding: ${({ theme }) => theme.spacing.xl};
-  }
-
-  button {
-    width: ${({ theme }) => theme.sizes.full};
-  }
-
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: ${({ theme }) => theme.spacing.lg};
-
-    p {
-      text-align: center;
-      cursor: pointer;
-    }
-  }
-`;
-
-export const InformationSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  width: ${({ theme }) => theme.sizes.full};
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-export const Badges = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-top: ${({ theme }) => theme.spacing.md};
-`;
-
-export const Edition = styled.section`
-  margin-top: ${({ theme }) => theme.spacing.lg};
-  opacity: 75%;
-
-  dl div {
-    display: flex;
-    gap: ${({ theme }) => theme.spacing.md};
-    margin-top: ${({ theme }) => theme.spacing.sm};
-  }
-`;
-
 export const ReviewsSection = styled.section`
   display: flex;
   flex-direction: column;

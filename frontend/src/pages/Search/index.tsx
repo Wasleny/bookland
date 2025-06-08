@@ -1,17 +1,17 @@
 import { useState, type FormEvent } from "react";
 import SearchForm from "../../components/Form/SearchForm";
-import books from "../../mocks/mockBooks";
 import type { BookProps } from "../../types/book";
 import { SearchResults, StyledSection } from "./styles";
 import Card from "../../components/Card";
-import { normalizeText } from "../../utils/normalizeText";
 import Typography from "../../components/Typography";
 import Cover from "../../components/Cover";
 import { useNavigate } from "react-router";
 import Button from "../../components/Button";
 import Rating from "../../components/Rating";
+import { useBooks } from "../../hooks/useBooks";
 
 const Search = () => {
+  const { searchBooks } = useBooks();
   const [results, setResults] = useState<BookProps[]>([]);
   const [search, setSearch] = useState("");
   const [searchField, setSearchField] = useState("");
@@ -19,27 +19,9 @@ const Search = () => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const normalizedSearch = normalizeText(search);
+
     setSearchField(search);
-
-    const filtered = books.filter((book) => {
-      const normalizedTitle = normalizeText(book.title);
-      const normalizedSeries = book.series ? normalizeText(book.series) : "";
-      const normalizedAuthors = book.authors?.map((author) =>
-        normalizeText(author)
-      );
-
-      return (
-        book.asin?.includes(normalizedSearch) ||
-        book.isbn10?.includes(normalizedSearch) ||
-        book.isbn13?.includes(normalizedSearch) ||
-        normalizedTitle.includes(normalizedSearch) ||
-        normalizedSeries.includes(normalizedSearch) ||
-        normalizedAuthors?.some((author) => author.includes(normalizedSearch))
-      );
-    });
-
-    setResults(filtered);
+    setResults(searchBooks(search) ?? []);
   };
 
   return (
@@ -57,7 +39,7 @@ const Search = () => {
             <Typography variant="h1">
               Resultado da busca: <i>{searchField}</i>
             </Typography>
-            <SearchResults breakpoint='md'>
+            <SearchResults breakpoint="md">
               {results.map((result) => (
                 <Card
                   verticalPadding="xl"
@@ -83,7 +65,12 @@ const Search = () => {
                           {result.series} #{result.bookNumber}
                         </Typography>
                       )}
-                      <Rating size={30} averageRating={result.averageRating ?? 0} rating={result.ratingsCount ?? 0} editions={result.editionCount ?? 1}  />
+                      <Rating
+                        size={30}
+                        averageRating={result.averageRating ?? 0}
+                        rating={result.ratingsCount ?? 0}
+                        editions={result.editionCount ?? 1}
+                      />
                     </div>
                   </header>
                   <footer>

@@ -109,9 +109,9 @@ const Criteria = () => {
       <StyledSection>
         {results.length > 0 && (
           <>
-            <Typography variant="link" onClick={() => setResults([])}>
+            <Button variant="outline" onClick={() => setResults([])}>
               Limpar pesquisa
-            </Typography>
+            </Button>
             <StyledCriteria>
               {results.map((result) => (
                 <Card breakpoint="lg" key={result.id}>

@@ -1,7 +1,7 @@
 export const bookMenu = [
   { name: "Minhas Estantes", to: "" },
-  { name: "Meus Livros", to: "" },
-  { name: "Explorar Catálogo", to: "" },
+  // { name: "Meus Livros", to: "" },
+  // { name: "Explorar Catálogo", to: "" },
 ];
 
 export const managementMenu = (changeName: boolean) => [
