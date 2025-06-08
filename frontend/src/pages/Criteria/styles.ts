@@ -22,7 +22,7 @@ export const StyledSection = styled.section`
 export const StyledCriteria = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.xl};
   margin: ${({ theme }) => `${theme.spacing.lg} ${theme.spacing.none}`};
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {

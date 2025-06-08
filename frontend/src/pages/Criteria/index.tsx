@@ -4,10 +4,8 @@ import type { RatingCriteria } from "../../types/ratingCriteria";
 import Typography from "../../components/Typography";
 import { StyledCriteria, StyledSection } from "./styles";
 import Button from "../../components/Button";
-import Card from "../../components/Card";
 import { ratingCriteria } from "../../mocks/mockRatingCriteria";
 import { useAuth } from "../../hooks/useAuth";
-import { ErrorMessage } from "../styles";
 import { normalizeText } from "../../utils/normalizeText";
 import CriterionModal from "../../components/CriterionModal";
 import Criterion from "../../components/Criterion";
@@ -57,11 +55,11 @@ const Criteria = () => {
         );
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Falha no login");
+      setError(err instanceof Error ? err.message : "Falha no cadastro");
       return;
     }
 
-    handleCloseForm();
+    handleCloseModal();
   };
 
   const handleUpdate = (id: string) => {
@@ -90,7 +88,7 @@ const Criteria = () => {
     setSearch("");
   };
 
-  const handleCloseForm = () => {
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setName("");
     setDescription("");
@@ -115,27 +113,12 @@ const Criteria = () => {
             </Button>
             <StyledCriteria>
               {results.map((result) => (
-                <Card breakpoint="lg" key={result.id}>
-                  <Typography variant="h2">{result.name}</Typography>
-                  <Typography variant="bodyItalic">
-                    {result.description}
-                  </Typography>
-
-                  <footer>
-                    <Button
-                      variant="remove"
-                      onClick={() => onDelete(result.id)}
-                    >
-                      Excluir Critéria
-                    </Button>
-                    <Button
-                      variant="edit"
-                      onClick={() => handleUpdate(result.id)}
-                    >
-                      Editar Critéria
-                    </Button>
-                  </footer>
-                </Card>
+                <Criterion
+                  key={result.id}
+                  criterion={result}
+                  handleUpdate={handleUpdate}
+                  onDelete={onDelete}
+                />
               ))}
             </StyledCriteria>
           </>
@@ -148,22 +131,22 @@ const Criteria = () => {
           </Button>
         </div>
 
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-
         <CriterionModal
           description={description}
           isModalOpen={isModalOpen}
           isUpdating={isUpdating}
           name={name}
-          onClose={() => setIsModalOpen(false)}
+          onClose={handleCloseModal}
           onSubmit={onSubmit}
           setDescription={setDescription}
           setName={setName}
+          error={error}
         />
 
         <StyledCriteria>
           {criteria.map((criterion) => (
             <Criterion
+              key={criterion.id}
               criterion={criterion}
               handleUpdate={handleUpdate}
               onDelete={onDelete}

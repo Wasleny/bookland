@@ -1,7 +1,8 @@
 import type { RatingCriteria } from "../../types/ratingCriteria";
 import Button from "../Button";
+import Card from "../Card";
 import Typography from "../Typography";
-import { CriterionCard } from "./styles";
+import { FooterCard } from "./styles";
 
 interface CriterionProps {
   criterion: RatingCriteria;
@@ -11,19 +12,27 @@ interface CriterionProps {
 
 const Criterion = ({ criterion, handleUpdate, onDelete }: CriterionProps) => {
   return (
-    <CriterionCard breakpoint="lg" key={criterion.id}>
-      <Typography variant="h2">{criterion.name}</Typography>
+    <Card breakpoint="lg" key={criterion.id} gap="lg">
+      <Typography
+        variant="h2"
+        marginBottom="none"
+        marginEnd="none"
+        marginStart="none"
+        marginTop="sm"
+      >
+        {criterion.name}
+      </Typography>
       <Typography variant="bodyItalic">{criterion.description}</Typography>
 
-      <footer>
+      <FooterCard>
         <Button variant="remove" onClick={() => onDelete(criterion.id)}>
           Excluir Critéria
         </Button>
         <Button variant="edit" onClick={() => handleUpdate(criterion.id)}>
           Editar Critéria
         </Button>
-      </footer>
-    </CriterionCard>
+      </FooterCard>
+    </Card>
   );
 };
 

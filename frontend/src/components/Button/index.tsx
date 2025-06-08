@@ -18,7 +18,7 @@ interface ButtonProps {
   variant: ButtonVariant;
   borderRadius?: BorderRadius;
   onClick?: () => void;
-  type?: "submit";
+  type?: "submit" | 'button';
   color?: Colors;
 }
 

@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Variant } from "../../types/common";
+import type { Spacing, Variant } from "../../types/common";
 import { StyledTypography } from "./styles";
 
 const variantToElement = {
@@ -21,20 +21,40 @@ const variantToElement = {
   authorName: "h2",
   review: "p",
   editionTitle: "h4",
-  avatarLegend: 'p'
+  avatarLegend: "p",
 } as const;
 
 interface TypographyProps {
   children: React.ReactNode;
   variant: Variant;
   onClick?: () => void;
+  marginStart?: Spacing;
+  marginEnd?: Spacing;
+  marginTop?: Spacing;
+  marginBottom?: Spacing;
 }
 
-const Typography = ({ children, variant, onClick }: TypographyProps) => {
+const Typography = ({
+  children,
+  variant,
+  onClick,
+  marginBottom,
+  marginEnd,
+  marginStart,
+  marginTop,
+}: TypographyProps) => {
   const Component = variantToElement[variant];
 
   return (
-    <StyledTypography as={Component} variant={variant} onClick={onClick}>
+    <StyledTypography
+      as={Component}
+      variant={variant}
+      onClick={onClick}
+      marginBottom={marginBottom}
+      marginEnd={marginEnd}
+      marginStart={marginStart}
+      marginTop={marginTop}
+    >
       {children}
     </StyledTypography>
   );

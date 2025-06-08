@@ -4,6 +4,7 @@ import { StyledForm } from "./styles";
 import Input from "../Form/Input";
 import Button from "../Button";
 import Typography from "../Typography";
+import { ErrorMessage } from "../../pages/styles";
 
 interface CriterionModalProps {
   isModalOpen: boolean;
@@ -14,6 +15,7 @@ interface CriterionModalProps {
   description: string;
   setName: (value: string) => void;
   setDescription: (value: string) => void;
+  error: string;
 }
 
 const CriterionModal = ({
@@ -25,10 +27,12 @@ const CriterionModal = ({
   description,
   setName,
   setDescription,
+  error,
 }: CriterionModalProps) => {
   return (
     <Modal isOpen={isModalOpen} onClose={onClose}>
       <Typography variant="h2">Crie um novo critério</Typography>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <StyledForm onSubmit={onSubmit}>
         <Input
           id="title"
@@ -47,7 +51,7 @@ const CriterionModal = ({
         />
 
         <div>
-          <Button variant="remove" onClick={onClose}>
+          <Button variant="remove" type="button" onClick={onClose}>
             Cancelar
           </Button>
 

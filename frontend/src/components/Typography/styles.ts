@@ -1,24 +1,30 @@
 import styled from "@emotion/styled";
-import type { Variant } from "../../types/common";
+import type { Spacing, Variant } from "../../types/common";
 import { css } from "@emotion/react";
 
 interface StyledTypographyProps {
   variant: Variant;
+  marginStart?: Spacing;
+  marginEnd?: Spacing;
+  marginTop?: Spacing;
+  marginBottom?: Spacing;
 }
 
 export const StyledTypography = styled.span<StyledTypographyProps>`
   font-family: ${({ theme }) => theme.fonts.base};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
 
-  ${({ variant, theme }) => {
+  ${({ variant, theme, marginBottom, marginEnd, marginStart, marginTop }) => {
     switch (variant) {
       case "h1":
         return css`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.bold};
           font-size: ${theme.fontSizes.xxl};
-          margin: ${theme.spacing.none};
-          margin-bottom: ${theme.spacing.xxl};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xxl};
           text-transform: uppercase;
         `;
 
@@ -50,7 +56,10 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
       case "ctaSecondary":
         return css`
           font-size: ${theme.fontSizes.sm};
-          margin: ${theme.spacing.lg} ${theme.spacing.none} ${theme.spacing.xxl};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.lg};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xxl};
           text-align: left;
 
           a {
@@ -65,7 +74,10 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.bold};
           font-size: ${theme.fontSizes.xl};
-          margin: ${theme.spacing.xl};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.xl};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.xl};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.xl};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xl};
           text-transform: uppercase;
         `;
 
@@ -80,7 +92,10 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.medium};
           font-size: ${theme.fontSizes.base};
-          margin-bottom: ${theme.spacing.md};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
           text-transform: uppercase;
         `;
 
@@ -89,13 +104,19 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.medium};
           font-size: ${theme.fontSizes.base};
-          margin-bottom: ${theme.spacing.md};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
         `;
 
       case "h4":
         return css`
           font-size: ${theme.fontSizes.sm};
-          margin-bottom: ${theme.spacing.md};
+          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
+          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
         `;
 
       case "ctaTitle":
