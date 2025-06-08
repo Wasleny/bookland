@@ -1,24 +1,43 @@
 import type React from "react";
-import type { Breakpoint, Spacing } from "../../types/common";
+import type {
+  Breakpoint,
+  FlexDirection,
+  JustifyContent,
+  Spacing,
+  Width,
+} from "../../types/common";
 import { StyledCard } from "./styles";
 
 interface CardProps {
   children: React.ReactNode;
   verticalPadding?: Spacing;
   horizontalPadding?: Spacing;
-  breakpoint?: Breakpoint
+  breakpoint?: Breakpoint;
+  flexDirection?: FlexDirection;
+  width?: Width | null;
+  gap?: Spacing | null;
+  justifyContent?: JustifyContent | null;
 }
 
 const Card = ({
   children,
   verticalPadding = "md",
   horizontalPadding = "md",
-  breakpoint = 'md'
+  breakpoint = "md",
+  flexDirection = "column",
+  width = null,
+  gap = null,
+  justifyContent = null,
 }: CardProps) => {
   return (
-    <StyledCard breakpoint={breakpoint}
+    <StyledCard
+      breakpoint={breakpoint}
       verticalPadding={verticalPadding}
       horizontalPadding={horizontalPadding}
+      flexDirection={flexDirection}
+      width={width}
+      gap={gap}
+      justifyContent={justifyContent}
     >
       {children}
     </StyledCard>

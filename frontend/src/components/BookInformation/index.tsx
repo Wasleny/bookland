@@ -1,9 +1,8 @@
-import Badge from "../Badge";
 import Rating from "../Rating";
 import Typography from "../Typography";
 import type { BookProps } from "../../types/book";
-import { Badges } from "../../pages/styles";
 import { Edition, InformationSection } from "./styles";
+import BookBadges from "../BookBadges";
 
 interface BookInformationProps {
   book: BookProps;
@@ -34,21 +33,7 @@ const BookInformation = ({ book }: BookInformationProps) => {
         size={25}
       />
       <Typography variant="review">{book.synopsis}</Typography>
-      <Badges>
-        {book.mainGenre && <Badge type="genre">{book.mainGenre}</Badge>}
-        {book.secondaryGenres &&
-          book.secondaryGenres.map((genre) => (
-            <Badge key={genre} type="genre">
-              {genre}
-            </Badge>
-          ))}
-        {book.tropes &&
-          book.tropes.map((trope) => (
-            <Badge key={trope} type="trope">
-              {trope}
-            </Badge>
-          ))}
-      </Badges>
+      <BookBadges book={book} />
       <Edition>
         <Typography variant="editionTitle">Detalhes da Edição</Typography>
         <dl>

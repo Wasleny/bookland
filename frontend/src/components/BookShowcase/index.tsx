@@ -8,9 +8,11 @@ import { useBooks } from "../../hooks/useBooks";
 
 const BookShowcase = () => {
   const navigate = useNavigate();
-  const { books } = useBooks();
+  const { books, isLoading } = useBooks();
   
   if (!books) return null;
+
+  if (isLoading) return <Typography variant="body">Carregando destaques...</Typography>;
 
   const booksCarousel = [
     books[1],
@@ -30,7 +32,7 @@ const BookShowcase = () => {
       <Typography variant="h2">Destaques</Typography>
       <Carousel
         items={booksCarousel.map((book) => (
-          <FeaturedBookGenre>
+          <FeaturedBookGenre key={book.id}>
             <Typography variant="h3">{book.mainGenre}</Typography>
             <Cover
               onClick={() => navigate(`book/${book.id}`)}

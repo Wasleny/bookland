@@ -1,22 +1,38 @@
 import styled from "@emotion/styled";
-import type { Breakpoint, Spacing } from "../../types/common";
+import type {
+  Breakpoint,
+  FlexDirection,
+  JustifyContent,
+  Spacing,
+  Width,
+} from "../../types/common";
 
 interface StyledCardProps {
   verticalPadding: Spacing;
   horizontalPadding: Spacing;
-  breakpoint: Breakpoint
+  breakpoint: Breakpoint;
+  flexDirection: FlexDirection;
+  width: Width | null;
+  gap: Spacing | null;
+  justifyContent: JustifyContent | null;
 }
 
 export const StyledCard = styled.div<StyledCardProps>`
-  padding: ${({ theme, verticalPadding }) => theme.spacing[verticalPadding]} ${({ theme, horizontalPadding }) => theme.spacing[horizontalPadding]};
+display: flex;
+  padding: ${({ theme, verticalPadding, horizontalPadding }) =>
+    `${theme.spacing[verticalPadding]} ${theme.spacing[horizontalPadding]}`};
   background-color: ${({ theme }) => theme.colors.surface};
   text-align: center;
   min-width: ${({ theme }) => theme.sizes.lg};
-  width: fit-content;
+  width: ${({ theme, width }) => (width ? theme.sizes[width] : "fit-content")};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  gap: ${({ gap, theme }) => (gap ? theme.spacing[gap] : null)};
+  justify-content: ${({ justifyContent }) => justifyContent};
 
-  @media screen and (max-width: ${({theme, breakpoint}) => theme.breakpoints[breakpoint]}) {
+  @media screen and (max-width: ${({ theme, breakpoint }) => theme.breakpoints[breakpoint]}) {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+    flex-direction: column;
   }
 `;

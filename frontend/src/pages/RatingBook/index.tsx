@@ -5,6 +5,7 @@ import type { BookProps } from "../../types/book";
 import { useAuth } from "../../hooks/useAuth";
 import { useBooks } from "../../hooks/useBooks";
 import type { ReviewProps } from "../../types/review";
+import Card from "../../components/Card";
 
 const RatingBook = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,6 +25,9 @@ const RatingBook = () => {
   return (
     <>
       <Typography variant="title">{book?.title}</Typography>
+      <Card>
+        <></>
+      </Card>
     </>
   );
 };

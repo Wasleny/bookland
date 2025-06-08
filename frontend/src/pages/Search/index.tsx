@@ -1,8 +1,13 @@
 import { useState, type FormEvent } from "react";
 import SearchForm from "../../components/Form/SearchForm";
 import type { BookProps } from "../../types/book";
-import { SearchResults, StyledSection } from "./styles";
-import Card from "../../components/Card";
+import {
+  CardHeader,
+  FooterCard,
+  SearchCard,
+  SearchResults,
+  StyledSection,
+} from "./styles";
 import Typography from "../../components/Typography";
 import Cover from "../../components/Cover";
 import { useNavigate } from "react-router";
@@ -16,6 +21,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const [searchField, setSearchField] = useState("");
   const navigate = useNavigate();
+  const breakpoint = "md";
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -39,14 +45,15 @@ const Search = () => {
             <Typography variant="h1">
               Resultado da busca: <i>{searchField}</i>
             </Typography>
-            <SearchResults breakpoint="md">
+            <SearchResults>
               {results.map((result) => (
-                <Card
+                <SearchCard
                   verticalPadding="xl"
                   horizontalPadding="xl"
+                  gap="md"
                   key={result.id}
                 >
-                  <header className="card-head">
+                  <CardHeader breakpoint={breakpoint}>
                     <Cover
                       size="elementXl"
                       onClick={() => navigate(`/book/${result.id}`)}
@@ -72,11 +79,11 @@ const Search = () => {
                         editions={result.editionCount ?? 1}
                       />
                     </div>
-                  </header>
-                  <footer>
+                  </CardHeader>
+                  <FooterCard breakpoint={breakpoint}>
                     <Button variant="submit">Adicionar à estante</Button>
-                  </footer>
-                </Card>
+                  </FooterCard>
+                </SearchCard>
               ))}
             </SearchResults>
           </>

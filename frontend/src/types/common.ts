@@ -46,3 +46,5 @@ export type BorderRadius = keyof Theme["radii"];
 export type Breakpoint = keyof Theme["breakpoints"];
 export type BadgeType = "genre" | "trope";
 export type Colors = keyof Theme["colors"];
+export type FlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
+export type JustifyContent = 'center' | 'space-between' | 'start' | 'end';

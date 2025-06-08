@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import SearchForm from "../../components/Form/SearchForm";
 import Typography from "../../components/Typography";
-import { StyledSection } from "./styles";
+import { StyledSection, UserFooter, UserHeader, Users } from "./styles";
 import type { UserProps } from "../../types/user";
 import users from "../../mocks/mockUsers";
 import Avatar from "../../components/Avatar";
@@ -13,7 +13,7 @@ const ManagementAdmins = () => {
   const [results, setResults] = useState<UserProps[]>([]);
   const [admins, setAdmins] = useState<UserProps[]>([]);
   const [usersMock, setUsersMock] = useState<UserProps[]>(users);
-  const breakpoint = "lg";
+  const breakpoint = "md";
 
   useEffect(() => {
     setAdmins(usersMock.filter((user) => user.role === "admin"));
@@ -64,10 +64,16 @@ const ManagementAdmins = () => {
       <StyledSection>
         {results.length > 0 && (
           <>
-            <div className="users">
+            <Users>
               {results.map((result) => (
-                <Card breakpoint={breakpoint} key={result.id}>
-                  <header>
+                <Card
+                  breakpoint={breakpoint}
+                  key={result.id}
+                  justifyContent="space-between"
+                  flexDirection="row"
+                  gap="lg"
+                >
+                  <UserHeader>
                     <Avatar key={result.id} path={result.avatarUrl} />
                     <div>
                       <Typography variant="searchTitle">
@@ -75,8 +81,8 @@ const ManagementAdmins = () => {
                       </Typography>
                       <Typography variant="body">{result.email}</Typography>
                     </div>
-                  </header>
-                  <footer>
+                  </UserHeader>
+                  <UserFooter>
                     {result.role === "user" ? (
                       <Button
                         variant="submit"
@@ -92,34 +98,40 @@ const ManagementAdmins = () => {
                         Excluir Admin
                       </Button>
                     )}
-                  </footer>
+                  </UserFooter>
                 </Card>
               ))}
-            </div>
+            </Users>
 
             <hr />
           </>
         )}
 
         <Typography variant="h1">Administradores</Typography>
-        <div className="users">
+        <Users>
           {admins.map((admin) => (
-            <Card breakpoint={breakpoint} key={admin.id}>
-              <header>
+            <Card
+              breakpoint={breakpoint}
+              key={admin.id}
+              justifyContent="space-between"
+              gap="lg"
+              flexDirection="row"
+            >
+              <UserHeader>
                 <Avatar key={admin.id} path={admin.avatarUrl} />
                 <div>
                   <Typography variant="searchTitle">{admin.name}</Typography>
                   <Typography variant="body">{admin.email}</Typography>
                 </div>
-              </header>
-              <footer>
+              </UserHeader>
+              <UserFooter>
                 <Button variant="remove" onClick={() => onDelete(admin.id)}>
                   Excluir Admin
                 </Button>
-              </footer>
+              </UserFooter>
             </Card>
           ))}
-        </div>
+        </Users>
       </StyledSection>
     </>
   );

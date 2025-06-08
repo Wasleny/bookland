@@ -130,7 +130,7 @@ const CurrentReadings = () => {
             </Readings>
           </>
         ) : (
-          <Card>
+          <Card width='full' gap='lg'>
             <Typography variant="h3">
               Você ainda não começou nenhuma leitura.
             </Typography>

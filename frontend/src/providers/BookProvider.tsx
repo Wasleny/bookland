@@ -14,10 +14,15 @@ interface BookProviderProps {
 export const BookProvider = ({ children }: BookProviderProps) => {
   const [books, setBooks] = useState<BookProps[]>([]);
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getBooks();
-    getReviews();
+    const loadData = async () => {
+      await Promise.all([getBooks(), getReviews()]);
+      setIsLoading(false);
+    };
+
+    loadData();
   }, []);
 
   const getBooks = async () => {
@@ -97,6 +102,7 @@ export const BookProvider = ({ children }: BookProviderProps) => {
       value={{
         books,
         getBooks,
+        isLoading,
         getBook,
         reviews,
         getBookReviews,

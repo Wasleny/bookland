@@ -6,6 +6,7 @@ import type { Status } from "../types/common";
 export interface BookContextType {
   books: BookProps[] | null;
   reviews: ReviewProps[] | null;
+  isLoading: boolean;
   getBooks: () => Promise<void>;
   getBook: (id: string) => BookProps | undefined;
   getBookReviews: (bookId: string) => ReviewProps[] | undefined;
@@ -21,6 +22,7 @@ export interface BookContextType {
 export const BookContext = createContext<BookContextType>({
   books: null,
   reviews: null,
+  isLoading: true,
   getBooks: async () => {},
   getBook: () => undefined,
   getBookReviews: () => undefined,

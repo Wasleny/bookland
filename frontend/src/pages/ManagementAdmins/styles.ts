@@ -11,43 +11,33 @@ export const StyledSection = styled.section`
     display: block;
     width: ${({ theme }) => theme.sizes.full};
   }
+`;
 
-  .users {
-    margin-bottom: ${({ theme }) => theme.spacing.xxl};
+export const Users = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.xl};
+  width: ${({ theme }) => theme.sizes.full};
+`;
+
+export const UserHeader = styled.header`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.md};
+
+  div {
     display: flex;
-    flex-wrap: wrap;
-    gap: ${({ theme }) => theme.spacing.xl};
-    width: ${({ theme }) => theme.sizes.full};
+    flex-direction: column;
+  }
 
-    div {
-      display: flex;
-      justify-content: space-between;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: left;
+  }
+`;
 
-      header {
-        display: flex;
-        gap: ${({ theme }) => theme.spacing.md};
-
-        div {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-
-      footer button {
-        padding: ${({ theme }) => theme.spacing.sm};
-        font-weight: ${({ theme }) => theme.fontWeights.semibold};
-      }
-    }
-
-    @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      > div {
-        flex-direction: column;
-        gap: ${({ theme }) => theme.spacing.lg};
-
-        header {
-          text-align: left;
-        }
-      }
-    }
+export const UserFooter = styled.footer`
+  button {
+    padding: ${({ theme }) => theme.spacing.sm};
+    font-weight: ${({ theme }) => theme.fontWeights.semibold};
   }
 `;

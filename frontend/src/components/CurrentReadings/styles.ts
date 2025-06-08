@@ -4,13 +4,6 @@ export const StyledSection = styled.section`
   > div {
     margin-right: ${({ theme }) => theme.spacing.xl};
 
-    > div {
-      width: ${({ theme }) => theme.sizes.full};
-      display: flex;
-      flex-direction: column;
-      gap: ${({ theme }) => theme.spacing.lg};
-    }
-
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
       margin-right: ${({ theme }) => theme.spacing.none};
     }

@@ -2,14 +2,15 @@ import { useEffect, useState, type FormEvent } from "react";
 import SearchForm from "../../components/Form/SearchForm";
 import type { RatingCriteria } from "../../types/ratingCriteria";
 import Typography from "../../components/Typography";
-import { StyledCriteria, StyledForm, StyledSection } from "./styles";
+import { StyledCriteria, StyledSection } from "./styles";
 import Button from "../../components/Button";
-import Input from "../../components/Form/Input";
 import Card from "../../components/Card";
 import { ratingCriteria } from "../../mocks/mockRatingCriteria";
 import { useAuth } from "../../hooks/useAuth";
 import { ErrorMessage } from "../styles";
 import { normalizeText } from "../../utils/normalizeText";
+import CriterionModal from "../../components/CriterionModal";
+import Criterion from "../../components/Criterion";
 
 const Criteria = () => {
   const [search, setSearch] = useState("");
@@ -18,7 +19,7 @@ const Criteria = () => {
   const [error, setError] = useState("");
   const [criteria, setCriteria] = useState<RatingCriteria[]>([]);
   const [results, setResults] = useState<RatingCriteria[]>([]);
-  const [formIsOpen, setFormIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState("");
   const { currentUser } = useAuth();
   const user = currentUser?.id;
@@ -60,13 +61,13 @@ const Criteria = () => {
       return;
     }
 
-    handleCloseForm()
+    handleCloseForm();
   };
 
   const handleUpdate = (id: string) => {
     const criterion = criteria.filter((criterion) => criterion.id === id)[0];
 
-    setFormIsOpen(true);
+    setIsModalOpen(true);
     setIsUpdating(id);
     setName(criterion.name);
     setDescription(criterion.description);
@@ -90,7 +91,7 @@ const Criteria = () => {
   };
 
   const handleCloseForm = () => {
-    setFormIsOpen(false);
+    setIsModalOpen(false);
     setName("");
     setDescription("");
     setIsUpdating("");
@@ -142,63 +143,31 @@ const Criteria = () => {
 
         <div>
           <Typography variant="h1">Critérios de Avaliação</Typography>
-          <Button variant="submit" onClick={() => setFormIsOpen(true)}>
+          <Button variant="submit" onClick={() => setIsModalOpen(true)}>
             Criar Critério
           </Button>
         </div>
 
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
-        {formIsOpen && (
-          <StyledForm onSubmit={onSubmit}>
-            <Input
-              id="title"
-              label="Nome do critério"
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              value={name}
-            />
-
-            <Input
-              id="description"
-              label="Descrição do critério"
-              onChange={(e) => setDescription(e.target.value)}
-              type="text"
-              value={description}
-            />
-
-            <div>
-              <Button variant="remove" onClick={handleCloseForm}>
-                Cancelar
-              </Button>
-
-              <Button variant="submit" type="submit">
-                {isUpdating ? "Salvar" : "Criar"}
-              </Button>
-            </div>
-          </StyledForm>
-        )}
+        <CriterionModal
+          description={description}
+          isModalOpen={isModalOpen}
+          isUpdating={isUpdating}
+          name={name}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={onSubmit}
+          setDescription={setDescription}
+          setName={setName}
+        />
 
         <StyledCriteria>
           {criteria.map((criterion) => (
-            <Card breakpoint="lg" key={criterion.id}>
-              <Typography variant="h2">{criterion.name}</Typography>
-              <Typography variant="bodyItalic">
-                {criterion.description}
-              </Typography>
-
-              <footer>
-                <Button variant="remove" onClick={() => onDelete(criterion.id)}>
-                  Excluir Critéria
-                </Button>
-                <Button
-                  variant="edit"
-                  onClick={() => handleUpdate(criterion.id)}
-                >
-                  Editar Critéria
-                </Button>
-              </footer>
-            </Card>
+            <Criterion
+              criterion={criterion}
+              handleUpdate={handleUpdate}
+              onDelete={onDelete}
+            />
           ))}
         </StyledCriteria>
       </StyledSection>
