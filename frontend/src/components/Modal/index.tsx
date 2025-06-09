@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { StyledModal } from "./styles";
 import { SlClose } from "react-icons/sl";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {

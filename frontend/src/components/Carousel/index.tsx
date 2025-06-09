@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { StyledCarousel } from "./styles";
 
 interface CarouselProps {
-  items: React.ReactNode[];
+  items: ReactNode[];
 }
 
 const Carousel = ({ items }: CarouselProps) => {

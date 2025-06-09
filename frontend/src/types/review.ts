@@ -14,8 +14,8 @@ export interface ReviewProps {
   createdAt: Date;
   updatedAt?: Date;
   spoiler?: boolean;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: {day?: string, month?: string, year?: string};
+  endDate?: {day?: string, month?: string, year?: string};
   mostRecentReading?: boolean;
   ratingCompositionCriteria?: RatedCriterionProps[];
   independentRatingCriteria?: RatedCriterionProps[];

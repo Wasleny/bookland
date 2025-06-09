@@ -4,7 +4,7 @@ import ErrorMessage from "../../ErrorMessage";
 import Input from "../../Form/Input";
 import Modal from "../../Modal";
 import Typography from "../../Typography";
-import { UpdateProcessForm } from "./styles";
+import { UpdateProgressForm } from "./styles";
 
 interface ModalUpdateProgressProps {
   modalIsOpen: boolean;
@@ -28,7 +28,7 @@ const ModalUpdateProgress = ({
   return (
     <Modal isOpen={modalIsOpen} onClose={onClose}>
       <ErrorMessage error={error} />
-      <UpdateProcessForm onSubmit={onUpdate}>
+      <UpdateProgressForm onSubmit={onUpdate}>
         <Typography variant="h2">{title}</Typography>
         <Input
           id="update-progress"
@@ -40,7 +40,7 @@ const ModalUpdateProgress = ({
         <Button variant="submit" type="submit">
           Atualizar
         </Button>
-      </UpdateProcessForm>
+      </UpdateProgressForm>
     </Modal>
   );
 };

@@ -17,4 +17,8 @@ export const ReadingCard = styled(Card)`
     text-align: center;
     display: block;
   }
+
+  button {
+    width: ${({ theme }) => theme.sizes.full};
+  }
 `;

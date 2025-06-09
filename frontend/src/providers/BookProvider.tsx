@@ -56,13 +56,18 @@ export const BookProvider = ({ children }: BookProviderProps) => {
     bookId?: string,
     status?: Status
   ) => {
-    const filteredReviews =
+    let filteredReviews =
       reviews.filter((review) => review.user.id === userId) ?? [];
 
     if (bookId)
-      return filteredReviews.filter((review) => review.book.id === bookId);
-    else if (status)
-      return filteredReviews.filter((review) => review.status === status);
+      filteredReviews = filteredReviews.filter(
+        (review) => review.book.id === bookId
+      );
+
+    if (status)
+      filteredReviews = filteredReviews.filter(
+        (review) => review.status === status
+      );
 
     return filteredReviews;
   };

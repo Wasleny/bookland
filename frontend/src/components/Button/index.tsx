@@ -1,4 +1,4 @@
-import type React from "react";
+import type { MouseEvent, ReactNode } from "react";
 import type { BorderRadius, ButtonVariant, Colors } from "../../types/common";
 import { StyledButton } from "./styles";
 
@@ -14,10 +14,10 @@ const variantToElement = {
 } as const;
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   variant: ButtonVariant;
   borderRadius?: BorderRadius;
-  onClick?: () => void;
+  onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | 'button';
   color?: Colors;
 }

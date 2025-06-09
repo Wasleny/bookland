@@ -13,6 +13,14 @@ interface StyledTypographyProps {
 export const StyledTypography = styled.span<StyledTypographyProps>`
   font-family: ${({ theme }) => theme.fonts.base};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
+  margin-top: ${({ marginTop, theme }) =>
+    marginTop ? theme.spacing[marginTop] : theme.spacing.none};
+  margin-left: ${({ marginStart, theme }) =>
+    marginStart ? theme.spacing[marginStart] : theme.spacing.none};
+  margin-right: ${({ marginEnd, theme }) =>
+    marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
+  margin-bottom: ${({ marginBottom, theme }) =>
+    marginBottom ? theme.spacing[marginBottom] : theme.spacing.none};
 
   ${({ variant, theme, marginBottom, marginEnd, marginStart, marginTop }) => {
     switch (variant) {
@@ -21,10 +29,9 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.bold};
           font-size: ${theme.fontSizes.xxl};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xxl};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.xxl};
           text-transform: uppercase;
         `;
 
@@ -56,10 +63,12 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
       case "ctaSecondary":
         return css`
           font-size: ${theme.fontSizes.sm};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.lg};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xxl};
+          margin-top: ${marginTop
+            ? theme.spacing[marginTop]
+            : theme.spacing.lg};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.xxl};
           text-align: left;
 
           a {
@@ -74,10 +83,18 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.bold};
           font-size: ${theme.fontSizes.xl};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.xl};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.xl};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.xl};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.xl};
+          margin-top: ${marginTop
+            ? theme.spacing[marginTop]
+            : theme.spacing.xl};
+          margin-left: ${marginStart
+            ? theme.spacing[marginStart]
+            : theme.spacing.xl};
+          margin-right: ${marginEnd
+            ? theme.spacing[marginEnd]
+            : theme.spacing.xl};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.xl};
           text-transform: uppercase;
         `;
 
@@ -92,10 +109,9 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.medium};
           font-size: ${theme.fontSizes.base};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.md};
           text-transform: uppercase;
         `;
 
@@ -104,19 +120,17 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
           font-family: ${theme.fonts.ui};
           font-weight: ${theme.fontWeights.medium};
           font-size: ${theme.fontSizes.base};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.md};
         `;
 
       case "h4":
         return css`
           font-size: ${theme.fontSizes.sm};
-          margin-top: ${marginTop ? theme.spacing[marginTop] : theme.spacing.none};
-          margin-left: ${marginStart ? theme.spacing[marginStart] : theme.spacing.none};
-          margin-right: ${marginEnd ? theme.spacing[marginEnd] : theme.spacing.none};
-          margin-bottom: ${marginBottom ? theme.spacing[marginBottom] : theme.spacing.md};
+          margin-bottom: ${marginBottom
+            ? theme.spacing[marginBottom]
+            : theme.spacing.md};
         `;
 
       case "ctaTitle":
@@ -156,6 +170,7 @@ export const StyledTypography = styled.span<StyledTypographyProps>`
         return css`
           font-size: ${theme.fontSizes.base};
           font-family: ${theme.fonts.reading};
+          white-space: pre-line;
         `;
 
       case "editionTitle":

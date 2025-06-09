@@ -1,6 +1,6 @@
-import type React from "react";
 import type { Spacing, Variant } from "../../types/common";
 import { StyledTypography } from "./styles";
+import type { ReactNode } from "react";
 
 const variantToElement = {
   h1: "h1",
@@ -25,7 +25,7 @@ const variantToElement = {
 } as const;
 
 interface TypographyProps {
-  children: React.ReactNode;
+  children: ReactNode;
   variant: Variant;
   onClick?: () => void;
   marginStart?: Spacing;

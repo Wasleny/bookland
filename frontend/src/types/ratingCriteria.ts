@@ -9,5 +9,5 @@ export interface RatingCriteria {
 
 export interface RatedCriterionProps {
   criterion: RatingCriteria;
-  rating: Rating;
+  rating: Rating | null;
 }

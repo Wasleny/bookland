@@ -1,8 +1,9 @@
 import { StyledList } from "./styles";
 import type { Spacing } from "../../types/common";
+import type { ReactNode } from "react";
 
 export interface ListProps {
-  children: React.ReactNode;
+  children: ReactNode;
   display?: "flex" | "block";
   justify?: "space-between";
   gap: Spacing;

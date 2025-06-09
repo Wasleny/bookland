@@ -12,7 +12,7 @@ interface CriterionProps {
 
 const Criterion = ({ criterion, handleUpdate, onDelete }: CriterionProps) => {
   return (
-    <Card breakpoint="lg" key={criterion.id} gap="lg">
+    <Card breakpoint="lg" key={criterion.id} gap="lg" width='full'>
       <Typography
         variant="h2"
         marginBottom="none"
@@ -26,10 +26,10 @@ const Criterion = ({ criterion, handleUpdate, onDelete }: CriterionProps) => {
 
       <FooterCard>
         <Button variant="remove" onClick={() => onDelete(criterion.id)}>
-          Excluir Critéria
+          Excluir Critério
         </Button>
         <Button variant="edit" onClick={() => handleUpdate(criterion.id)}>
-          Editar Critéria
+          Editar Critério
         </Button>
       </FooterCard>
     </Card>

@@ -1,4 +1,4 @@
-import type React from "react";
+import type { ReactNode } from "react";
 import type {
   AlignItems,
   Breakpoint,
@@ -10,7 +10,7 @@ import type {
 import { StyledCard } from "./styles";
 
 interface CardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   verticalPadding?: Spacing;
   horizontalPadding?: Spacing;
   breakpoint?: Breakpoint;

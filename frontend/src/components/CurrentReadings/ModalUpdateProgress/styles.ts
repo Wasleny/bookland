@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const UpdateProcessForm = styled.form`
+export const UpdateProgressForm = styled.form`
   z-index: 1;
   background-color: ${({ theme }) => theme.colors.surface};
   padding: ${({ theme }) => theme.spacing.lg};

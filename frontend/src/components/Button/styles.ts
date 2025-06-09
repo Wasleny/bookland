@@ -85,11 +85,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
           font-weight: ${theme.fontWeights.semibold};
           font-size: ${theme.fontSizes.sm};
           margin-top: ${theme.spacing.lg};
-          width: ${theme.sizes.full};
+          width: fit-content;
 
           :hover {
             background-color: ${theme.colors.surface};
             border-color: ${theme.colors.secondary};
+            color: ${theme.colors.secondary};
           }
         `;
 
@@ -112,8 +113,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
         return css`
           background-color: ${theme.colors.alert};
           color: ${theme.colors.textOnInverted};
-          font-weight: ${theme.fontWeights.bold};
-          padding: ${theme.spacing.ssm} ${theme.spacing.xl};
+          font-weight: ${theme.fontWeights.semibold};
+          font-size: ${theme.fontSizes.sm};
+          margin-top: ${theme.spacing.lg};
+          width: fit-content;
 
           :hover {
             background-color: ${theme.colors.surface};
@@ -128,10 +131,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
           color: ${color ? theme.colors[color] : theme.colors.text};
           font-weight: ${theme.fontWeights.semibold};
           padding: ${theme.spacing.md};
-          border-color: ${color ? theme.colors[color] : theme.colors.backgroundInverted};
+          border-color: ${color
+            ? theme.colors[color]
+            : theme.colors.backgroundInverted};
 
           :hover {
-            background-color: ${color ? theme.colors[color] : theme.colors.backgroundInverted};
+            background-color: ${color
+              ? theme.colors[color]
+              : theme.colors.backgroundInverted};
             color: ${theme.colors.textOnInverted};
           }
         `;

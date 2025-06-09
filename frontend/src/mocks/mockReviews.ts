@@ -1,5 +1,6 @@
 import type { ReviewProps } from "../types/review";
 import mockBooks from "./mockBooks";
+import { ratingCriteria } from "./mockRatingCriteria";
 import users from "./mockUsers";
 
 const mockReviews: ReviewProps[] = [
@@ -17,6 +18,24 @@ const mockReviews: ReviewProps[] = [
     book: { ...mockBooks[11] },
     rating: 3,
     status: "read",
+    startDate: { day: "05", month: "04", year: "2025" },
+    endDate: { day: "31", month: "05", year: "2025" },
+    ratingCompositionCriteria: [
+      {
+        criterion: ratingCriteria[0],
+        rating: 3,
+      },
+      {
+        criterion: ratingCriteria[1],
+        rating: 4,
+      },
+    ],
+    independentRatingCriteria: [
+      {
+        criterion: ratingCriteria[2],
+        rating: 5,
+      },
+    ],
     body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in felis sodales, tincidunt mauris tristique, laoreet magna. Suspendisse potenti. Curabitur congue at ipsum ut rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed eleifend ipsum, ut tristique mi. Pellentesque fringilla, risus nec vulputate suscipit, sapien erat sollicitudin tellus, dignissim mollis nunc ipsum quis tortor. Nullam hendrerit arcu leo, ut malesuada turpis dictum vitae. Donec molestie euismod lacus vitae dapibus. Sed ultrices sit amet nulla a tempus. Praesent sed vehicula metus, nec porttitor metus. Aenean dignissim tincidunt aliquet. Fusce magna tellus, euismod sit amet magna eleifend, condimentum molestie nisl. Vivamus consectetur massa sit amet lacus laoreet, sed tempor enim tempus. Proin cursus, ligula vitae luctus feugiat, mi neque tincidunt enim, quis pulvinar quam neque non ex. Fusce vitae nunc sit amet quam aliquet gravida nec eu dui. Ut eget elementum enim, ut egestas neque. Aliquam nec dolor non leo hendrerit condimentum. Maecenas eget dui in diam vulputate placerat. Aliquam pellentesque, massa vitae mattis dictum, neque quam consectetur ipsum, id tincidunt enim nisi fermentum mauris.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in felis sodales, tincidunt mauris tristique, laoreet magna. Suspendisse potenti. Curabitur congue at ipsum ut rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed eleifend ipsum, ut tristique mi. Pellentesque fringilla, risus nec vulputate suscipit, sapien erat sollicitudin tellus, dignissim mollis nunc ipsum quis tortor. Nullam hendrerit arcu leo, ut malesuada turpis dictum vitae. Donec molestie euismod lacus vitae dapibus. Sed ultrices sit amet nulla a tempus. Praesent sed vehicula metus, nec porttitor metus. Aenean dignissim tincidunt aliquet. Fusce magna tellus, euismod sit amet magna eleifend, condimentum molestie nisl. Vivamus consectetur massa sit amet lacus laoreet, sed tempor enim tempus. Proin cursus, ligula vitae luctus feugiat, mi neque tincidunt enim, quis pulvinar quam neque non ex. Fusce vitae nunc sit amet quam aliquet gravida nec eu dui. Ut eget elementum enim, ut egestas neque. Aliquam nec dolor non leo hendrerit condimentum. Maecenas eget dui in diam vulputate placerat. Aliquam pellentesque, massa vitae mattis dictum, neque quam consectetur ipsum, id tincidunt enim nisi fermentum mauris.",
     createdAt: new Date(2025, 6, 5),
   },

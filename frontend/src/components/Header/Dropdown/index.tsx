@@ -1,12 +1,11 @@
-import type React from "react";
 import { StyledDropdown } from "./styles";
 import { useAuth } from "../../../hooks/useAuth";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { useNavigate } from "react-router";
 
 interface DropdownProps {
-  label: string | React.ReactNode;
-  items: { name: string | React.ReactNode; to: string }[];
+  label: string | ReactNode;
+  items: { name: string | ReactNode; to: string }[];
   position?: "right" | "left";
   id: string;
   openDropdown: boolean;
