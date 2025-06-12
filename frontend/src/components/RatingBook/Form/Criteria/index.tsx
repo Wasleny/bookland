@@ -30,9 +30,9 @@ interface CriteriaProps {
 }
 
 const Criteria = ({ formData, setFormData }: CriteriaProps) => {
-  const [availableCriteria, setAvailableCriteria] = useState<RatingCriteriaProps[]>(
-    []
-  );
+  const [availableCriteria, setAvailableCriteria] = useState<
+    RatingCriteriaProps[]
+  >([]);
   const [selectedCompositionCriterion, setSelectedCompositionCriterion] =
     useState<RatingCriteriaProps | undefined>(undefined);
   const [selectedIndependentCriterion, setSelectedIndependentCriterion] =
@@ -57,7 +57,7 @@ const Criteria = ({ formData, setFormData }: CriteriaProps) => {
     if (ratings.length === 0) {
       setFormData((prev) => ({
         ...prev,
-        rating: null,
+        rating: undefined,
       }));
       return;
     }
@@ -147,7 +147,7 @@ const Criteria = ({ formData, setFormData }: CriteriaProps) => {
     if (formData.useCompositionCriteria) {
       setFormData((prev) => ({
         ...prev,
-        rating: null,
+        rating: undefined,
       }));
     } else {
       setFormData((prev) => ({
@@ -276,9 +276,9 @@ const Criteria = ({ formData, setFormData }: CriteriaProps) => {
                 setFormData((prev) => ({
                   ...prev,
                   rating:
-                    e.target.value === ""
-                      ? null
-                      : (parseInt(e.target.value) as Rating),
+                    e.target.value !== ""
+                      ? (parseInt(e.target.value) as Rating)
+                      : undefined,
                 }))
               }
             >

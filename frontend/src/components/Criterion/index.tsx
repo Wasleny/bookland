@@ -1,18 +1,18 @@
-import type { RatingCriteria } from "../../types/ratingCriteria";
+import type { RatingCriteriaProps } from "../../types/ratingCriteria";
 import Button from "../Button";
 import Card from "../Card";
 import Typography from "../Typography";
 import { FooterCard } from "./styles";
 
 interface CriterionProps {
-  criterion: RatingCriteria;
+  criterion: RatingCriteriaProps;
   onDelete: (id: string) => void;
   handleUpdate: (id: string) => void;
 }
 
 const Criterion = ({ criterion, handleUpdate, onDelete }: CriterionProps) => {
   return (
-    <Card breakpoint="lg" key={criterion.id} gap="lg" width='full'>
+    <Card breakpoint="lg" key={criterion.id} gap="lg" width="full">
       <Typography
         variant="h2"
         marginBottom="none"
