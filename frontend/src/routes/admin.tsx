@@ -1,4 +1,8 @@
-import ManagementAdmins from "../pages/ManagementAdmins";
+import AdministratorManagement from "../pages/AdministratorManagement";
+import Authors from "../pages/Authors";
+import Books from "../pages/Books";
+import CatalogManagement from "../pages/CatalogManagement";
+import Series from "../pages/Series";
 import { ProtectedRoute } from "./protectedRoute";
 
 export const adminRoutes = [
@@ -6,8 +10,14 @@ export const adminRoutes = [
     path: "admin",
     element: <ProtectedRoute requireAdmin />,
     children: [
-      { path: "manage-admins", element: <ManagementAdmins />},
-      { path: "catalog", element: <h1>Gestão de Administradores</h1> },
+      { path: "manage-admins", element: <AdministratorManagement /> },
+      {
+        path: "manage-catalog",
+        element: <CatalogManagement />,
+      },
+      { path: "series", element: <Series /> },
+      { path: "authors", element: <Authors /> },
+      { path: "books", element: <Books /> },
     ],
   },
 ];

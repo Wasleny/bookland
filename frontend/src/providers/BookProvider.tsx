@@ -1,10 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { BookProps } from "../types/book";
 import { BookContext } from "../contexts/BookContext";
-import mockBooks from "../mocks/mockBooks";
+import type { BookProps } from "../types/book";
+import type { ReadingInProgressProps } from "../types/readingInProgress";
 import type { ReviewProps } from "../types/review";
-import mockReviews from "../mocks/mockReviews";
-import type { Status } from "../types/common";
+import type { BookUserProps } from "../types/bookUser";
+import { mockBooks } from "../mocks/mockBooks";
+import { mockReviews } from "../mocks/mockReviews";
+import { mockBookUser } from "../mocks/mockBookUser";
+import { mockReadingInProgress } from "../mocks/mockReadingInProgress";
 import { normalizeText } from "../utils/normalizeText";
 
 interface BookProviderProps {
@@ -12,13 +15,22 @@ interface BookProviderProps {
 }
 
 export const BookProvider = ({ children }: BookProviderProps) => {
-  const [books, setBooks] = useState<BookProps[]>([]);
-  const [reviews, setReviews] = useState<ReviewProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [books, setBooks] = useState<BookProps[]>([]);
+  const [readingsInProgress, setReadingsInProgress] = useState<
+    ReadingInProgressProps[]
+  >([]);
+  const [reviews, setReviews] = useState<ReviewProps[]>([]);
+  const [bookEntries, setBookEntries] = useState<BookUserProps[]>([]);
 
   useEffect(() => {
     const loadData = async () => {
-      await Promise.all([getBooks(), getReviews()]);
+      await Promise.all([
+        getBooks(),
+        getReviews(),
+        getAllReadingsInProgress(),
+        getAllBookEntries(),
+      ]);
       setIsLoading(false);
     };
 
@@ -34,42 +46,66 @@ export const BookProvider = ({ children }: BookProviderProps) => {
     });
   };
 
-  const getBook = (id: string): BookProps | undefined => {
-    return books.find((book) => book.id === id);
+  const getBook = (bookId: string) => {
+    return books.find((book) => book.id === bookId);
+  };
+
+  const getAllReadingsInProgress = async () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        setReadingsInProgress(mockReadingInProgress);
+        resolve();
+      }, 500);
+    });
+  };
+
+  const getUserAllReadingsInProgress = (userId: string) => {
+    return readingsInProgress.filter((reading) => reading.user.id === userId);
+  };
+
+  const getBookReadingInProgress = (bookId: string, userId: string) => {
+    return readingsInProgress.find(
+      (reading) => reading.user.id === userId && reading.book.id === bookId
+    );
+  };
+
+  const getReviews = async () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        setReviews(mockReviews);
+        resolve();
+      }, 500);
+    });
   };
 
   const getBookReviews = (bookId: string) => {
+    return reviews.filter((review) => review.book.id === bookId);
+  };
+
+  const getUserBookReviews = (bookId: string, userId: string) => {
     return reviews.filter(
-      (review) =>
-        review.body && review.book.id === bookId && review.status === "read"
+      (review) => review.book.id === bookId && review.user.id === userId
     );
   };
 
-  const getUserReading = (userId: string, bookId: string) => {
-    return reviews.find(
-      (review) => review.book.id === bookId && review.user.id == userId
+  const getAllBookEntries = async () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        setBookEntries(mockBookUser);
+        resolve();
+      }, 500);
+    });
+  };
+
+  const getUserBookshelfEntry = (bookId: string, userId: string) => {
+    return bookEntries.find(
+      (bookEntry) =>
+        bookEntry.book.id === bookId && bookEntry.user.id === userId
     );
   };
 
-  const getUserReadings = (
-    userId: string,
-    bookId?: string,
-    status?: Status
-  ) => {
-    let filteredReviews =
-      reviews.filter((review) => review.user.id === userId) ?? [];
-
-    if (bookId)
-      filteredReviews = filteredReviews.filter(
-        (review) => review.book.id === bookId
-      );
-
-    if (status)
-      filteredReviews = filteredReviews.filter(
-        (review) => review.status === status
-      );
-
-    return filteredReviews;
+  const getUserBookshelfEntries = (userId: string) => {
+    return bookEntries.filter((bookEntry) => bookEntry.user.id === userId);
   };
 
   const searchBooks = (search: string) => {
@@ -93,10 +129,58 @@ export const BookProvider = ({ children }: BookProviderProps) => {
     });
   };
 
-  const getReviews = async () => {
+  const getMostRecentReading = (bookId: string, userId: string) => {
+    return reviews.find(
+      (review) =>
+        review.book.id === bookId &&
+        review.user.id === userId &&
+        review.mostRecentReading
+    );
+  };
+
+  const addBook = async (
+    bookData: Omit<
+      BookProps,
+      "id" | "averageRating" | "editionCount" | "reviewsCount" | "ratingCount"
+    >
+  ) => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
-        setReviews(mockReviews ?? []);
+        const newBook: BookProps = {
+          id: `book-${Date.now()}`,
+          ...bookData,
+        };
+        setBooks((prev) => [...prev, newBook]);
+        resolve();
+      }, 500);
+    });
+  };
+
+  const updateBook = async (bookId: string, bookData: Partial<BookProps>) => {
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        const bookIndex = books.findIndex((book) => book.id === bookId);
+
+        if (bookIndex === -1) return reject(new Error("Livro não encontrado."));
+
+        const updatedBook = {
+          ...books[bookIndex],
+          ...bookData,
+        };
+
+        const updatedBooks = [...books];
+        updatedBooks[bookIndex] = updatedBook;
+
+        setBooks(updatedBooks);
+        resolve();
+      }, 500);
+    });
+  };
+
+  const deleteBook = async (bookId: string) => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        setBooks(books.filter((book) => book.id !== bookId));
         resolve();
       }, 500);
     });
@@ -105,15 +189,27 @@ export const BookProvider = ({ children }: BookProviderProps) => {
   return (
     <BookContext.Provider
       value={{
-        books,
-        getBooks,
         isLoading,
-        getBook,
+        books,
+        readingsInProgress,
         reviews,
+        bookEntries,
+        getBooks,
+        getBook,
+        getAllReadingsInProgress,
+        getUserAllReadingsInProgress,
+        getBookReadingInProgress,
+        getReviews,
         getBookReviews,
-        getUserReading,
-        getUserReadings,
+        getUserBookReviews,
+        getAllBookEntries,
+        getUserBookshelfEntry,
+        getUserBookshelfEntries,
         searchBooks,
+        getMostRecentReading,
+        addBook,
+        updateBook,
+        deleteBook,
       }}
     >
       {children}

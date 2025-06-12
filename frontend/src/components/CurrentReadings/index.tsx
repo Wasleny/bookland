@@ -4,34 +4,31 @@ import Typography from "../Typography";
 import Card from "../Card";
 import Button from "../Button";
 import { StyledSection } from "./styles";
-import mockReviews from "../../mocks/mockReviews";
-import type { ReviewProps } from "../../types/review";
 import ModalUpdateProgress from "./ModalUpdateProgress";
 import Readings from "./Readings";
+import { useBooks } from "../../hooks/useBooks";
+import type { ReadingInProgressProps } from "../../types/readingInProgress";
 
 const CurrentReadings = () => {
-  const [userCurrentReadings, setUserCurrentReadings] = useState<ReviewProps[]>(
-    []
-  );
   const [newProgress, setNewProgress] = useState<string>("");
   const [idBook, setIdBook] = useState<string>();
+  const [userAllReadingsInProgress, setUserAllReadingsInProgress] =
+    useState<ReadingInProgressProps[]>([]);
   const [title, setTitle] = useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [error, setError] = useState("");
   const { currentUser } = useAuth();
+  const { getUserAllReadingsInProgress } = useBooks();
 
   useEffect(() => {
-    const getCurrentReadings = () => {
-      setUserCurrentReadings(
-        mockReviews.filter(
-          (reading) =>
-            reading.user.id === currentUser?.id && reading.status === "reading"
-        )
-      );
-    };
+    if (!currentUser) return;
 
-    getCurrentReadings();
-  }, [currentUser]);
+    const readings = getUserAllReadingsInProgress(currentUser.id);
+
+    if (!readings) return;
+
+    setUserAllReadingsInProgress(readings);
+  }, [currentUser, getUserAllReadingsInProgress]);
 
   const handleUpdate = (idBook: string, titleBook: string) => {
     setIdBook(idBook);
@@ -49,8 +46,8 @@ const CurrentReadings = () => {
       if (newReadingProgress > 100 || newReadingProgress < 0)
         throw new Error("O progresso precisa ser um número de 0 a 100.");
 
-      setUserCurrentReadings(
-        userCurrentReadings.map((reading) => {
+      setUserAllReadingsInProgress(
+        userAllReadingsInProgress.map((reading) => {
           if (reading.book.id === idBook) {
             return { ...reading, progress: newReadingProgress };
           }
@@ -73,7 +70,7 @@ const CurrentReadings = () => {
     <StyledSection>
       <Typography variant="h2">Leituras Atuais</Typography>
       <div>
-        {userCurrentReadings.length > 0 ? (
+        {userAllReadingsInProgress.length > 0 ? (
           <>
             <ModalUpdateProgress
               error={error}
@@ -87,7 +84,7 @@ const CurrentReadings = () => {
 
             <Readings
               handleUpdate={handleUpdate}
-              userCurrentReadings={userCurrentReadings}
+              userAllReadingsInProgress={userAllReadingsInProgress}
             />
           </>
         ) : (

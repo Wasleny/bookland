@@ -35,8 +35,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
       case "submit":
         return css`
           background-color: ${theme.colors.primary};
-          font-weight: ${theme.fontWeights.bold};
-          padding: ${theme.spacing.ssm} ${theme.spacing.xl};
+          font-weight: ${theme.fontWeights.semibold};
+          font-size: ${theme.fontSizes.sm};
+          margin-top: ${theme.spacing.lg};
+          width: fit-content;
 
           :hover {
             background-color: ${theme.colors.surface};

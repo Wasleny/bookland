@@ -1,6 +1,6 @@
 import type { BookProps } from "../types/book";
 
-const mockBooks: BookProps[] = [
+export const mockBooks: BookProps[] = [
   {
     id: "1",
     title: "To Kill a Mockingbird",
@@ -582,5 +582,3 @@ const mockBooks: BookProps[] = [
     isbn13: "9780064471046",
   },
 ];
-
-export default mockBooks;

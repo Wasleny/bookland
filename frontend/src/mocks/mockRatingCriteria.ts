@@ -1,6 +1,6 @@
-import type { RatingCriteria } from "../types/ratingCriteria";
+import type { RatingCriteriaProps } from "../types/ratingCriteria";
 
-export const ratingCriteria: RatingCriteria[] = [
+export const mockRatingCriteria: RatingCriteriaProps[] = [
   {
     id: "criterion-1",
     userId: "user-1",

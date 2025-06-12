@@ -25,5 +25,4 @@ export interface BookProps {
   asin?: string
   language?: string;// ex: 'Inglês', 'Português
   editionCount?: number;
-  // reviews?: ReviewProps[]
 }

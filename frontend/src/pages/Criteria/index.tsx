@@ -1,29 +1,29 @@
 import { useEffect, useState, type FormEvent } from "react";
 import SearchForm from "../../components/Form/SearchForm";
-import type { RatingCriteria } from "../../types/ratingCriteria";
 import Typography from "../../components/Typography";
 import { StyledCriteria, StyledSection } from "./styles";
 import Button from "../../components/Button";
-import { ratingCriteria } from "../../mocks/mockRatingCriteria";
 import { useAuth } from "../../hooks/useAuth";
 import { normalizeText } from "../../utils/normalizeText";
 import CriterionModal from "../../components/CriterionModal";
 import Criterion from "../../components/Criterion";
+import type { RatingCriteriaProps } from "../../types/ratingCriteria";
+import { mockRatingCriteria } from "../../mocks/mockRatingCriteria";
 
 const Criteria = () => {
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
-  const [criteria, setCriteria] = useState<RatingCriteria[]>([]);
-  const [results, setResults] = useState<RatingCriteria[]>([]);
+  const [criteria, setCriteria] = useState<RatingCriteriaProps[]>([]);
+  const [results, setResults] = useState<RatingCriteriaProps[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState("");
   const { currentUser } = useAuth();
   const user = currentUser?.id;
 
   useEffect(() => {
-    setCriteria(ratingCriteria.filter((criteria) => user === criteria.userId));
+    setCriteria(mockRatingCriteria.filter((criteria) => user === criteria.userId));
   }, [user]);
 
   const onSubmit = (e: FormEvent) => {
@@ -37,7 +37,7 @@ const Criteria = () => {
 
       if (!isUpdating) {
         const newCriterion = {
-          id: `criteria-${ratingCriteria.length + 1}`,
+          id: `criteria-${mockRatingCriteria.length + 1}`,
           name,
           description,
           userId: user,

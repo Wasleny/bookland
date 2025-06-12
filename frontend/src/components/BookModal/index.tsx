@@ -1,12 +1,12 @@
+import type { Bookshelf } from "../../types/common";
 import Button from "../Button";
 import Modal from "../Modal";
 import Typography from "../Typography";
-import type { Status } from "../../types/common";
 
 interface BookModalProps {
   isModalOpen: boolean;
   onClose: () => void;
-  onUpdate: (status: Status) => void;
+  onUpdate: (bookshelf: Bookshelf) => void;
 }
 
 const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
@@ -24,7 +24,7 @@ const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
         <Button
           color="secondary"
           variant="outline"
-          onClick={() => onUpdate("to read")}
+          onClick={() => onUpdate("want to read")}
         >
           Quero Ler
         </Button>
@@ -35,9 +35,6 @@ const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
         >
           Lendo
         </Button>
-        <Typography variant="body" onClick={() => onUpdate("not added")}>
-          Remover da biblioteca
-        </Typography>
       </section>
     </Modal>
   );

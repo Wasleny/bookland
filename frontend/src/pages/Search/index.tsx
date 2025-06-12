@@ -3,7 +3,6 @@ import SearchForm from "../../components/Form/SearchForm";
 import type { BookProps } from "../../types/book";
 import {
   CardHeader,
-  FooterCard,
   SearchCard,
   SearchResults,
   StyledSection,
@@ -11,7 +10,6 @@ import {
 import Typography from "../../components/Typography";
 import Cover from "../../components/Cover";
 import { useNavigate } from "react-router";
-import Button from "../../components/Button";
 import Rating from "../../components/Rating";
 import { useBooks } from "../../hooks/useBooks";
 
@@ -80,9 +78,6 @@ const Search = () => {
                       />
                     </div>
                   </CardHeader>
-                  <FooterCard breakpoint={breakpoint}>
-                    <Button variant="submit">Adicionar à estante</Button>
-                  </FooterCard>
                 </SearchCard>
               ))}
             </SearchResults>

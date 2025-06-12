@@ -3,7 +3,7 @@ import type { Theme } from "@emotion/react";
 export type Rating = 1 | 2 | 3 | 4 | 5;
 export type Gender = "female" | "male" | "non-binary" | "unspecified";
 export type Role = "user" | "admin";
-export type Status = "not added" | "to read" | "reading" | "read";
+export type Bookshelf = "want to read" | "reading" | "read";
 export type Format =
   | "hardcover"
   | "paperback"
@@ -39,7 +39,7 @@ export type ButtonVariant =
   | "add"
   | "ghost"
   | "outline";
-export type InputType = "text" | "search" | "email" | "password" | "number";
+export type InputType = "text" | "search" | "email" | "password" | "number" | 'date';
 export type Width = keyof Theme["sizes"];
 export type Spacing = keyof Theme["spacing"];
 export type BorderRadius = keyof Theme["radii"];

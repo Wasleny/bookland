@@ -4,7 +4,7 @@ import RatingBookReview from "../Review";
 import type { ReviewProps } from "../../../types/review";
 import Typography from "../../Typography";
 import Card from "../../Card";
-import type { Rating, Status } from "../../../types/common";
+import type { Rating } from "../../../types/common";
 import RatingBookForm from "../Form";
 import type { RatedCriterionProps } from "../../../types/ratingCriteria";
 import { useAuth } from "../../../hooks/useAuth";
@@ -18,12 +18,11 @@ interface RatingBookCollapsibleProps {
 
 export interface FormDataProps {
   id: string;
-  user: UserProps | null;
-  book: BookProps | null;
-  status: Status | null;
-  rating: Rating | null;
+  user: UserProps | undefined;
+  book: BookProps | undefined;
+  rating: Rating | undefined;
   body?: string;
-  createdAt: Date | null;
+  createdAt: Date | undefined;
   spoiler: boolean;
   startDate: { day: string; month: string; year: string };
   endDate: { day: string; month: string; year: string };
@@ -36,12 +35,11 @@ export interface FormDataProps {
 
 const initialState = {
   id: "",
-  user: null,
-  book: null,
-  status: null,
-  rating: null,
+  user: undefined,
+  book: undefined,
+  rating: undefined,
   body: "",
-  createdAt: null,
+  createdAt: undefined,
   spoiler: false,
   startDate: { day: "", month: "", year: "" },
   endDate: { day: "", month: "", year: "" },
@@ -56,42 +54,44 @@ const RatingBookCollapsible = ({ book }: RatingBookCollapsibleProps) => {
   const [formIsOpen, setFormIsOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [formData, setFormData] = useState<FormDataProps>(initialState);
-  const { getUserReadings } = useBooks();
+  const { getUserBookReviews } = useBooks();
   const [reviews, setReviews] = useState<ReviewProps[]>([]);
   const { currentUser } = useAuth();
 
   useEffect(() => {
     if (!currentUser) return;
-    setReviews(getUserReadings(currentUser.id, book.id, "read") ?? []);
-  }, [getUserReadings, currentUser, book]);
+    setReviews(getUserBookReviews(book.id, currentUser.id) ?? []);
+
+
+  }, [getUserBookReviews, currentUser, book]);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    setFormData((prev) => ({
-      ...prev,
-      id: `criterion-${Date.now()}`,
-      user: currentUser,
-      book: book,
-      status: "read" as Status,
-      createdAt: new Date(),
-      mostRecentReading: true,
-    }));
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { useCompositionCriteria, useIndependentCriteria, ...newReview } =
+    const { useCompositionCriteria, useIndependentCriteria, ...review } =
       formData;
 
-    if (isUpdating)
+    const newReview: ReviewProps = {
+      ...review,
+      id: isUpdating ? review.id : `criterion-${Date.now()}`,
+      user: currentUser!,
+      book: book,
+      createdAt: new Date(),
+      mostRecentReading: true,
+    };
+
+    if (isUpdating) {
       setReviews((prev) =>
-        prev.map((r) => {
-          if (r.id === newReview.id) {
-            return newReview as ReviewProps;
-          }
-          return r;
-        })
+        prev.map((r) => (r.id === newReview.id ? newReview : r))
       );
-    else setReviews((prev) => [...prev, newReview as ReviewProps]);
+    } else {
+      setReviews((prev) => [
+        ...prev.map((r) => ({ ...r, mostRecentReading: false })),
+        newReview,
+      ]);
+    }
+
     setFormData(initialState);
     setFormIsOpen(false);
   };
@@ -101,8 +101,7 @@ const RatingBookCollapsible = ({ book }: RatingBookCollapsibleProps) => {
       id: review.id,
       user: review.user,
       book: review.book,
-      status: review.status,
-      rating: review.rating ?? null,
+      rating: review.rating ?? undefined,
       body: review.body,
       createdAt: review.createdAt,
       spoiler: review.spoiler ?? false,

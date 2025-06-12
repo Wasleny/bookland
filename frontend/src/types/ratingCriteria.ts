@@ -1,6 +1,6 @@
 import type { Rating } from "./common";
 
-export interface RatingCriteria {
+export interface RatingCriteriaProps {
     id: string;
     userId: string;
     name: string;
@@ -8,6 +8,6 @@ export interface RatingCriteria {
 }
 
 export interface RatedCriterionProps {
-  criterion: RatingCriteria;
+  criterion: RatingCriteriaProps;
   rating: Rating | null;
 }

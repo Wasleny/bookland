@@ -7,8 +7,6 @@ import {
 } from "react";
 import type { FormDataProps } from "../../Collapsible";
 import { useAuth } from "../../../../hooks/useAuth";
-import { ratingCriteria } from "../../../../mocks/mockRatingCriteria";
-import type { RatingCriteria } from "../../../../types/ratingCriteria";
 import type { Rating } from "../../../../types/common";
 import { Col, GroupForm, Row, StyledLabel } from "../styles";
 import { StyledSelect } from "../Select/styles";
@@ -23,6 +21,8 @@ import {
 } from "./styles";
 import Typography from "../../../Typography";
 import { TbTrashX } from "react-icons/tb";
+import type { RatingCriteriaProps } from "../../../../types/ratingCriteria";
+import { mockRatingCriteria } from "../../../../mocks/mockRatingCriteria";
 
 interface CriteriaProps {
   formData: FormDataProps;
@@ -30,20 +30,20 @@ interface CriteriaProps {
 }
 
 const Criteria = ({ formData, setFormData }: CriteriaProps) => {
-  const [availableCriteria, setAvailableCriteria] = useState<RatingCriteria[]>(
+  const [availableCriteria, setAvailableCriteria] = useState<RatingCriteriaProps[]>(
     []
   );
   const [selectedCompositionCriterion, setSelectedCompositionCriterion] =
-    useState<RatingCriteria | undefined>(undefined);
+    useState<RatingCriteriaProps | undefined>(undefined);
   const [selectedIndependentCriterion, setSelectedIndependentCriterion] =
-    useState<RatingCriteria | undefined>(undefined);
+    useState<RatingCriteriaProps | undefined>(undefined);
   const { currentUser } = useAuth();
 
   useEffect(() => {
     if (!currentUser) return;
 
     setAvailableCriteria(
-      ratingCriteria.filter((c) => c.userId === currentUser.id)
+      mockRatingCriteria.filter((c) => c.userId === currentUser.id)
     );
   }, [currentUser]);
 

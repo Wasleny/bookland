@@ -1,22 +1,22 @@
 import { useNavigate } from "react-router";
-import type { ReviewProps } from "../../../types/review";
 import Button from "../../Button";
 import Cover from "../../Cover";
 import Typography from "../../Typography";
 import { ReadingCard, StyledReadings } from "./styles";
 import Progress from "./Progress";
+import type { ReadingInProgressProps } from "../../../types/readingInProgress";
 
 interface ReadingsProps {
-  userCurrentReadings: ReviewProps[];
+  userAllReadingsInProgress: ReadingInProgressProps[];
   handleUpdate: (bookId: string, bookTitle: string) => void;
 }
 
-const Readings = ({ userCurrentReadings, handleUpdate }: ReadingsProps) => {
+const Readings = ({ userAllReadingsInProgress, handleUpdate }: ReadingsProps) => {
   const navigate = useNavigate();
 
   return (
     <StyledReadings>
-      {userCurrentReadings.map((item) => (
+      {userAllReadingsInProgress.map((item) => (
         <ReadingCard
           alignItems="center"
           gap="md"

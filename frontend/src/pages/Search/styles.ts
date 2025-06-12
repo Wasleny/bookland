@@ -54,13 +54,3 @@ export const CardHeader = styled.header<{ breakpoint: Breakpoint }>`
     }
   }
 `;
-
-export const FooterCard = styled.footer<{ breakpoint: Breakpoint }>`
-  button {
-    width: 100%;
-
-    @media screen and (max-width: ${({ theme, breakpoint }) => theme.breakpoints[breakpoint]}) {
-      margin-top: ${({ theme }) => theme.spacing.lg};
-    }
-  }
-`;

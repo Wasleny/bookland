@@ -6,10 +6,11 @@ interface CoverProps {
     alt: string;
     size: Width;
     onClick?: () => void
+    title?: string
 }
 
-const Cover = ({ path, alt, size, onClick }: CoverProps) => {
-    return <StyledCover onClick={onClick} size={size} src={path} alt={alt} />
+const Cover = ({ path, alt, size, onClick, title='' }: CoverProps) => {
+    return <StyledCover title={title} onClick={onClick} size={size} src={path} alt={alt} />
 }
 
 export default Cover

@@ -3,16 +3,16 @@ import SearchForm from "../../components/Form/SearchForm";
 import Typography from "../../components/Typography";
 import { StyledSection, UserFooter, UserHeader, Users } from "./styles";
 import type { UserProps } from "../../types/user";
-import users from "../../mocks/mockUsers";
 import Avatar from "../../components/Avatar";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+import { mockUsers } from "../../mocks/mockUsers";
 
-const ManagementAdmins = () => {
+const AdministratorManagement = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState<UserProps[]>([]);
   const [admins, setAdmins] = useState<UserProps[]>([]);
-  const [usersMock, setUsersMock] = useState<UserProps[]>(users);
+  const [usersMock, setUsersMock] = useState<UserProps[]>(mockUsers);
   const breakpoint = "md";
 
   useEffect(() => {
@@ -137,4 +137,4 @@ const ManagementAdmins = () => {
   );
 };
 
-export default ManagementAdmins;
+export default AdministratorManagement;

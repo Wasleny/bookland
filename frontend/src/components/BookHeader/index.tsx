@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import type { BookProps } from "../../types/book";
-import type { ReviewProps } from "../../types/review";
 import { useBooks } from "../../hooks/useBooks";
 import { useAuth } from "../../hooks/useAuth";
 import { StyledBookHeader } from "./styles";
-import type { Status } from "../../types/common";
 import Cover from "../Cover";
 import Rating from "../Rating";
 import Button from "../Button";
 import Typography from "../Typography";
 import BookModal from "../BookModal";
+import type { BookUserProps } from "../../types/bookUser";
+import type { Bookshelf } from "../../types/common";
+import type { ReviewProps } from "../../types/review";
 
 interface BookHeaderProps {
   book: BookProps;
@@ -18,36 +19,44 @@ interface BookHeaderProps {
 
 const BookHeader = ({ book }: BookHeaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reading, setReading] = useState<ReviewProps | null>(null);
-  const { reviews, getUserReading } = useBooks();
+  const [reading, setReading] = useState<BookUserProps | null>(null);
+  const { getUserBookshelfEntry, getMostRecentReading } = useBooks();
+  const [mostRecentReading, setMostRecentReading] = useState<ReviewProps>();
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (book.id) {
-      const userId = currentUser?.id;
-
-      if (userId) setReading(getUserReading(userId, book.id) ?? null);
+    if (!book) return;
+    if (!currentUser) {
+      setReading(null);
+      setMostRecentReading(undefined);
+      return;
     }
-  }, [book, currentUser, getUserReading]);
 
-  const onUpdate = (bookshelf: Status) => {
+    const bookReading = getUserBookshelfEntry(book.id, currentUser.id);
+    if (!bookReading) return;
+
+    setReading(bookReading);
+
+    const mostRecent = getMostRecentReading(book.id, currentUser.id);
+    if (!mostRecent) return;
+
+    setMostRecentReading(mostRecent);
+  }, [book, currentUser, getUserBookshelfEntry, getMostRecentReading]);
+
+  const onUpdate = (bookshelf: Bookshelf) => {
     if (currentUser && book) {
-      if (bookshelf === "not added") {
-        setReading(null);
+      if (reading) {
+        setReading({ ...reading, defaultBookshelf: bookshelf });
       } else {
-        if (reading) {
-          setReading({ ...reading, status: bookshelf, rating: undefined });
-        } else {
-          const newReading: ReviewProps = {
-            id: `review-${reviews ? reviews.length + 1 : 1}`,
-            user: currentUser,
-            book: book,
-            status: bookshelf,
-            createdAt: new Date(),
-          };
-          setReading(newReading);
-        }
+        const newReading: BookUserProps = {
+          id: `book-user-${new Date()}`,
+          user: currentUser,
+          book: book,
+          defaultBookshelf: bookshelf,
+        };
+
+        setReading(newReading);
       }
 
       setIsModalOpen(false);
@@ -63,11 +72,11 @@ const BookHeader = ({ book }: BookHeaderProps) => {
           size="md"
         />
       </div>
-      {reading?.rating ? (
+      {mostRecentReading ? (
         <Rating
           gap="md"
           size={45}
-          averageRating={reading.rating ?? 0}
+          averageRating={mostRecentReading.rating ?? 0}
           flag="personal"
         />
       ) : (
@@ -80,7 +89,7 @@ const BookHeader = ({ book }: BookHeaderProps) => {
         </Button>
       ) : (
         <>
-          {reading.status === "read" && (
+          {reading.defaultBookshelf === "read" && (
             <Button
               variant="outline"
               color="primary"
@@ -89,7 +98,7 @@ const BookHeader = ({ book }: BookHeaderProps) => {
               Lido
             </Button>
           )}{" "}
-          {reading.status === "to read" && (
+          {reading.defaultBookshelf === "want to read" && (
             <Button
               variant="outline"
               color="secondary"
@@ -98,7 +107,7 @@ const BookHeader = ({ book }: BookHeaderProps) => {
               Quero ler
             </Button>
           )}
-          {reading.status === "reading" && (
+          {reading.defaultBookshelf === "reading" && (
             <Button
               variant="outline"
               color="accent"
