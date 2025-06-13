@@ -13,7 +13,7 @@ const AsideMenu = () => {
   ];
 
   return (
-    <StyledAside>
+    <StyledAside data-testid='aside-menu'>
       <Typography variant="h2">Acesso Rápido</Typography>
       <ul>
         {asideMenu.map((menu) => (
