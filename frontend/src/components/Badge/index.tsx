@@ -7,7 +7,7 @@ interface BadgeProps {
 }
 
 const Badge = ({ type, children }: BadgeProps) => {
-  return <StyledBadge type={type}>{children}</StyledBadge>;
+  return <StyledBadge data-testid='badge' type={type}>{children}</StyledBadge>;
 };
 
 export default Badge;

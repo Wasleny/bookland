@@ -2,9 +2,6 @@ import { screen } from "@testing-library/react";
 import { render } from "../utils/render";
 import { mockUsers } from "../../mocks/mockUsers";
 import { MemoryRouter } from "react-router";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "../../theme/theme";
-
 const mockedNavigate = vi.fn();
 
 vi.mock("react-router", async () => {
@@ -62,11 +59,9 @@ describe("AsideMenu", () => {
     const { default: AsideMenu } = await import("../../components/AsideMenu");
 
     render(
-      <ThemeProvider theme={theme}>
         <MemoryRouter>
           <AsideMenu />
         </MemoryRouter>
-      </ThemeProvider>
     );
 
     expect(screen.getByText("Minhas Estantes")).toBeInTheDocument();
