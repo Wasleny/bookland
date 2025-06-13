@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD Pipeline
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    name: Build and Run Tests
     defaults:
       run:
         working-directory: ./frontend
@@ -29,6 +30,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy to Vercel
     needs: build-and-test
     if: success()
 
