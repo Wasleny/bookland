@@ -7,7 +7,7 @@ const Banner = () => {
   const { currentUser } = useAuth();
 
   return currentUser ? (
-    <StyledBanner>
+    <StyledBanner data-testid='banner'>
       <Typography variant="title">Olá, {currentUser?.name}</Typography>
       <Typography variant="body">
         Bem-vinda de volta ao Bookland. Continue sua jornada literária onde
@@ -15,7 +15,7 @@ const Banner = () => {
       </Typography>
     </StyledBanner>
   ) : (
-    <StyledBanner>
+    <StyledBanner data-testid='banner'>
       <Typography variant="title">
         DESCUBRA, LEIA E COMPARTILHE LIVROS
       </Typography>
