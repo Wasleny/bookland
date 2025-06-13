@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 import { render } from "../utils/render";
-import { MemoryRouter } from "react-router";
 const mockedNavigate = vi.fn();
 
 vi.mock("react-router", async () => {
@@ -22,9 +21,7 @@ describe("Avatar", () => {
     const { default: Avatar } = await import("../../components/Avatar");
 
     render(
-      <MemoryRouter>
         <Avatar path="caminho" />
-      </MemoryRouter>
     );
 
     const img = await screen.findByRole("img");

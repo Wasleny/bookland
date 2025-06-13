@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -96,66 +96,66 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { BookProps } from "../../types/book";
 import type { Spacing } from "../../types/common";
-<span class="cstat-no" title="statement not covered" >import Badge from "../Badge";</span>
-<span class="cstat-no" title="statement not covered" >import { Badges } from "./styles";</span>
+import Badge from "../Badge";
+import { Badges } from "./styles";
 &nbsp;
 interface BookBadgesProps {
   book: BookProps;
   marginTop?: Spacing
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const BookBadges = ({ book, marginTop = 'md' }: BookBadgesProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Badges marginTop={marginTop}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {book.mainGenre &amp;&amp; &lt;Badge type="genre"&gt;{book.mainGenre}&lt;/Badge&gt;}</span>
-<span class="cstat-no" title="statement not covered" >      {book.secondaryGenres &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >        book.secondaryGenres.map((genre) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Badge key={genre} type="genre"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            {genre}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Badge&gt;</span>
-<span class="cstat-no" title="statement not covered" >        ))}</span>
-<span class="cstat-no" title="statement not covered" >      {book.tropes &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >        book.tropes.map((trope) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Badge key={trope} type="trope"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            {trope}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Badge&gt;</span>
-<span class="cstat-no" title="statement not covered" >        ))}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/Badges&gt;</span>
+const BookBadges = ({ book, marginTop = 'md' }: BookBadgesProps) =&gt; {
+  return (
+    &lt;Badges marginTop={marginTop}&gt;
+      {book.mainGenre &amp;&amp; &lt;Badge type="genre"&gt;{book.mainGenre}&lt;/Badge&gt;}
+      {book.secondaryGenres &amp;&amp;
+        book.secondaryGenres.map((genre) =&gt; (
+          &lt;Badge key={genre} type="genre"&gt;
+            {genre}
+          &lt;/Badge&gt;
+        ))}
+      {book.tropes &amp;&amp;
+        book.tropes.map((trope) =&gt; (
+          &lt;Badge key={trope} type="trope"&gt;
+            {trope}
+          &lt;/Badge&gt;
+        ))}
+    &lt;/Badges&gt;
   );
-<span class="cstat-no" title="statement not covered" >};</span>
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default BookBadges;</span>
+export default BookBadges;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -163,7 +163,7 @@ interface BookBadgesProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-13T18:40:04.620Z
+                at 2025-06-13T18:58:29.629Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

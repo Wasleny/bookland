@@ -2,17 +2,6 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { render } from "../utils/render";
 import { mockUsers } from "../../mocks/mockUsers";
-import { MemoryRouter } from "react-router";
-
-const mockedNavigate = vi.fn();
-
-vi.mock("react-router", async () => {
-  const actual = await vi.importActual("react-router");
-  return {
-    ...actual,
-    useNavigate: () => mockedNavigate,
-  };
-});
 
 import { useAuth } from "../../hooks/useAuth";
 import { useAuthors } from "../../hooks/useAuthors";
@@ -53,11 +42,7 @@ describe("AuthorsModal", () => {
     );
     const mockSetIsOpen = vi.fn();
 
-    render(
-      <MemoryRouter>
-        <AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />
-      </MemoryRouter>
-    );
+    render(<AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />);
 
     expect(screen.getByRole("dialog", { hidden: true })).toBeInTheDocument();
     expect(screen.getByLabelText("Nome do(a) Autor(a)")).toBeInTheDocument();
@@ -84,11 +69,7 @@ describe("AuthorsModal", () => {
     );
     const mockSetIsOpen = vi.fn();
 
-    render(
-      <MemoryRouter>
-        <AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />
-      </MemoryRouter>
-    );
+    render(<AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />);
 
     await userEvent.type(
       screen.getByLabelText("Nome do(a) Autor(a)"),
@@ -124,15 +105,13 @@ describe("AuthorsModal", () => {
     const mockSetIsUpdating = vi.fn();
 
     render(
-      <MemoryRouter>
-        <AuthorsModal
-          isOpen={true}
-          setIsOpen={mockSetIsOpen}
-          authorId="author-1"
-          isUpdating={true}
-          setIsUpdating={mockSetIsUpdating}
-        />
-      </MemoryRouter>
+      <AuthorsModal
+        isOpen={true}
+        setIsOpen={mockSetIsOpen}
+        authorId="author-1"
+        isUpdating={true}
+        setIsUpdating={mockSetIsUpdating}
+      />
     );
 
     await userEvent.type(
@@ -169,14 +148,12 @@ describe("AuthorsModal", () => {
     const mockSetIsUpdating = vi.fn();
 
     render(
-      <MemoryRouter>
-        <AuthorsModal
-          isOpen={true}
-          setIsOpen={mockSetIsOpen}
-          isUpdating={true}
-          setIsUpdating={mockSetIsUpdating}
-        />
-      </MemoryRouter>
+      <AuthorsModal
+        isOpen={true}
+        setIsOpen={mockSetIsOpen}
+        isUpdating={true}
+        setIsUpdating={mockSetIsUpdating}
+      />
     );
 
     await userEvent.type(
@@ -209,11 +186,7 @@ describe("AuthorsModal", () => {
     );
     const mockSetIsOpen = vi.fn();
 
-    render(
-      <MemoryRouter>
-        <AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />
-      </MemoryRouter>
-    );
+    render(<AuthorsModal isOpen={true} setIsOpen={mockSetIsOpen} />);
 
     await userEvent.type(
       screen.getByLabelText("Nome do(a) Autor(a)"),
@@ -234,21 +207,22 @@ describe("AuthorsModal", () => {
   });
 
   it("should populate fields when updating an author", async () => {
-  const mockAuthor = { name: "Autor X", nationality: "Nacionalidade X" };
-  const mockGetAuthor = vi.fn().mockReturnValue(mockAuthor);
+    const mockAuthor = { name: "Autor X", nationality: "Nacionalidade X" };
+    const mockGetAuthor = vi.fn().mockReturnValue(mockAuthor);
 
-  (useAuthors as jest.Mock).mockReturnValue({
-    addAuthor: vi.fn(),
-    updateAuthor: vi.fn(),
-    getAuthor: mockGetAuthor,
-  });
+    (useAuthors as jest.Mock).mockReturnValue({
+      addAuthor: vi.fn(),
+      updateAuthor: vi.fn(),
+      getAuthor: mockGetAuthor,
+    });
 
-  const { default: AuthorsModal } = await import("../../components/AuthorsModal");
-  const mockSetIsOpen = vi.fn();
-  const mockSetIsUpdating = vi.fn();
+    const { default: AuthorsModal } = await import(
+      "../../components/AuthorsModal"
+    );
+    const mockSetIsOpen = vi.fn();
+    const mockSetIsUpdating = vi.fn();
 
-  render(
-    <MemoryRouter>
+    render(
       <AuthorsModal
         isOpen={true}
         setIsOpen={mockSetIsOpen}
@@ -256,11 +230,11 @@ describe("AuthorsModal", () => {
         setIsUpdating={mockSetIsUpdating}
         authorId="author-1"
       />
-    </MemoryRouter>
-  );
+    );
 
-  expect(screen.getByLabelText("Nome do(a) Autor(a)")).toHaveValue("Autor X");
-  expect(screen.getByLabelText("Nacionalidade")).toHaveValue("Nacionalidade X");
-});
-
+    expect(screen.getByLabelText("Nome do(a) Autor(a)")).toHaveValue("Autor X");
+    expect(screen.getByLabelText("Nacionalidade")).toHaveValue(
+      "Nacionalidade X"
+    );
+  });
 });

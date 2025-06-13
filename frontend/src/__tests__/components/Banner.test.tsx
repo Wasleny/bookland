@@ -1,7 +1,6 @@
 import { screen } from "@testing-library/react";
 import { render } from "../utils/render";
 import { mockUsers } from "../../mocks/mockUsers";
-import { MemoryRouter } from "react-router";
 
 import { useAuth } from "../../hooks/useAuth";
 
@@ -26,11 +25,7 @@ describe("Banner", () => {
 
     const { default: Banner } = await import("../../components/Banner");
 
-    render(
-      <MemoryRouter>
-        <Banner />
-      </MemoryRouter>
-    );
+    render(<Banner />);
 
     const heading = `Olá, ${currentUser?.name}`;
     const paragraph =
@@ -53,11 +48,7 @@ describe("Banner", () => {
 
     const { default: Banner } = await import("../../components/Banner");
 
-    render(
-      <MemoryRouter>
-        <Banner />
-      </MemoryRouter>
-    );
+    render(<Banner />);
 
     const heading = "DESCUBRA, LEIA E COMPARTILHE LIVROS";
 
