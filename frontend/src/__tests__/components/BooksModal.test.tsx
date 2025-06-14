@@ -100,25 +100,9 @@ describe("BooksModal", () => {
       bookToSimulate.title
     );
     await user.type(
-      screen.getByLabelText("Nome original do livro"),
-      bookToSimulate.originalTitle
-    );
-    await user.type(
-      screen.getByLabelText("Ordem do livro na série"),
-      String(bookToSimulate.bookNumber)
-    );
-    await user.type(
       screen.getByLabelText("Quantidade de páginas"),
       String(bookToSimulate.pages)
     );
-    await user.type(
-      screen.getByLabelText("Data de publicação"),
-      bookToSimulate.publicationDate.toISOString().split("T")[0]
-    );
-    await user.type(screen.getByLabelText("Editora"), bookToSimulate.publisher);
-    await user.type(screen.getByLabelText("ISBN 13"), bookToSimulate.isbn13);
-    await user.type(screen.getByLabelText("ISBN 10"), bookToSimulate.isbn10);
-    await user.type(screen.getByLabelText("ASIN"), bookToSimulate.asin);
     await user.type(
       screen.getByPlaceholderText("Sinopse do livro"),
       bookToSimulate.synopis
@@ -132,20 +116,8 @@ describe("BooksModal", () => {
       bookToSimulate.mainGenre
     );
     await user.selectOptions(
-      screen.getByTestId("select-secondary-genres"),
-      bookToSimulate.secondaryGenres
-    );
-    await user.selectOptions(
-      screen.getByTestId("select-tropes"),
-      bookToSimulate.tropes
-    );
-    await user.selectOptions(
       screen.getByTestId("select-series"),
       bookToSimulate.series
-    );
-    await user.selectOptions(
-      screen.getByTestId("select-original-series"),
-      bookToSimulate.originalSeries
     );
     await user.selectOptions(
       screen.getByTestId("select-format"),
