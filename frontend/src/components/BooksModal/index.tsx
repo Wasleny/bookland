@@ -103,7 +103,7 @@ const BooksModal = ({
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
-      <Form onSubmit={onSubmit}>
+      <Form data-testid="form-books" onSubmit={onSubmit}>
         <Typography variant="h2">
           {isUpdating ? "Edite um livro" : "Cadastre um livro"}
         </Typography>
@@ -132,6 +132,7 @@ const BooksModal = ({
           value={formData.originalTitle ?? ""}
         />
         <StyledSelect
+          data-testid="select-authors"
           value={formData.authors ?? ""}
           multiple
           size={5}
@@ -154,6 +155,7 @@ const BooksModal = ({
             ))}
         </StyledSelect>
         <StyledSelect
+          data-testid="select-main-genre"
           value={formData.mainGenre ?? ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setFormData((prev) => ({
@@ -170,6 +172,7 @@ const BooksModal = ({
           ))}
         </StyledSelect>
         <StyledSelect
+          data-testid="select-secondary-genres"
           value={formData.secondaryGenres ?? ""}
           multiple
           size={5}
@@ -192,6 +195,7 @@ const BooksModal = ({
             ))}
         </StyledSelect>
         <StyledSelect
+          data-testid="select-tropes"
           value={formData.tropes ?? ""}
           multiple
           size={5}
@@ -215,6 +219,7 @@ const BooksModal = ({
         </StyledSelect>
         {/* cover */}
         <StyledSelect
+          data-testid="select-series"
           value={formData.series ?? ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setFormData((prev) => ({
@@ -232,6 +237,7 @@ const BooksModal = ({
             ))}
         </StyledSelect>
         <StyledSelect
+          data-testid="select-original-series"
           value={formData.originalSeries ?? ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setFormData((prev) => ({
@@ -273,6 +279,7 @@ const BooksModal = ({
           defaultValue={formData.synopsis ?? ""}
         ></textarea>
         <StyledSelect
+          data-testid="select-format"
           value={formData.format ?? ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setFormData((prev) => ({
@@ -365,6 +372,7 @@ const BooksModal = ({
           value={formData.asin ?? ""}
         />
         <StyledSelect
+          data-testid="select-language"
           value={formData.language ?? ""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setFormData((prev) => ({

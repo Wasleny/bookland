@@ -130,4 +130,9 @@ export const mockAuthors: AuthorProps[] = [
     name: "C.S. Lewis",
     nationality: "Irlanda",
   },
+  {
+    id: "author-27",
+    name: "Sarah J. Maas",
+    nationality: "Estados Unidos",
+  },
 ];

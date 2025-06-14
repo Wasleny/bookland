@@ -30,4 +30,6 @@ export const tropes = [
   "Rags to Riches",
   "Redemption Arc",
   "Enemies Forced to Work Together",
+  "Magic",
+  "Tournament",
 ];
