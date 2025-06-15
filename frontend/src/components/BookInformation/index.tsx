@@ -12,7 +12,7 @@ const BookInformation = ({ book }: BookInformationProps) => {
   return (
     <InformationSection>
       {book.series && (
-        <Typography variant="link">
+        <Typography dataTestId="series-link" variant="link">
           {book.series} #{book.bookNumber}
         </Typography>
       )}
@@ -36,7 +36,7 @@ const BookInformation = ({ book }: BookInformationProps) => {
       <BookBadges book={book} />
       <Edition>
         <Typography variant="editionTitle">Detalhes da Edição</Typography>
-        <dl>
+        <dl data-testid='edition-details'>
           <div>
             <dt>Título Original:</dt>
             <dd>{book.originalTitle}</dd>

@@ -32,7 +32,7 @@ const Rating = ({
   const outlineStars = hasPartial ? 5 - filledStars - 1 : 5 - filledStars;
 
   return (
-    <StyledRating gap={gap} strokeWidth={strokeWidth}>
+    <StyledRating data-testid='rating' gap={gap} strokeWidth={strokeWidth}>
       <div>
         {Array.from({ length: filledStars }).map((_, i) => {
           return <FaStar key={i} size={size} className="filled-star" />;

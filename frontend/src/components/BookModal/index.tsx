@@ -15,6 +15,7 @@ const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
       <Typography variant="h2">Adicionar à Biblioteca</Typography>
       <section className="options">
         <Button
+          dataTestId="button-update-bookshelf-read"
           color="primary"
           variant="outline"
           onClick={() => onUpdate("read")}
@@ -22,6 +23,7 @@ const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
           Lido
         </Button>
         <Button
+          dataTestId="button-update-bookshelf-want-to-read"
           color="secondary"
           variant="outline"
           onClick={() => onUpdate("want to read")}
@@ -29,6 +31,7 @@ const BookModal = ({ isModalOpen, onClose, onUpdate }: BookModalProps) => {
           Quero Ler
         </Button>
         <Button
+          dataTestId="button-update-bookshelf-reading"
           color="accent"
           variant="outline"
           onClick={() => onUpdate("reading")}

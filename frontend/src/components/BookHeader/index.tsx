@@ -26,7 +26,6 @@ const BookHeader = ({ book }: BookHeaderProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!book) return;
     if (!currentUser) {
       setReading(null);
       setMostRecentReading(undefined);
@@ -84,13 +83,18 @@ const BookHeader = ({ book }: BookHeaderProps) => {
       )}
 
       {!reading ? (
-        <Button variant="submit" onClick={() => setIsModalOpen(true)}>
+        <Button
+          dataTestId="button-bookshelf"
+          variant="submit"
+          onClick={() => setIsModalOpen(true)}
+        >
           Adicionar à biblioteca
         </Button>
       ) : (
         <>
           {reading.defaultBookshelf === "read" && (
             <Button
+              dataTestId="button-bookshelf"
               variant="outline"
               color="primary"
               onClick={() => setIsModalOpen(true)}
@@ -100,6 +104,7 @@ const BookHeader = ({ book }: BookHeaderProps) => {
           )}{" "}
           {reading.defaultBookshelf === "want to read" && (
             <Button
+              dataTestId="button-bookshelf"
               variant="outline"
               color="secondary"
               onClick={() => setIsModalOpen(true)}
@@ -109,6 +114,7 @@ const BookHeader = ({ book }: BookHeaderProps) => {
           )}
           {reading.defaultBookshelf === "reading" && (
             <Button
+              dataTestId="button-bookshelf"
               variant="outline"
               color="accent"
               onClick={() => setIsModalOpen(true)}

@@ -32,6 +32,7 @@ interface TypographyProps {
   marginEnd?: Spacing;
   marginTop?: Spacing;
   marginBottom?: Spacing;
+  dataTestId?: string;
 }
 
 const Typography = ({
@@ -42,6 +43,7 @@ const Typography = ({
   marginEnd,
   marginStart,
   marginTop,
+  dataTestId
 }: TypographyProps) => {
   const Component = variantToElement[variant];
 
@@ -54,6 +56,7 @@ const Typography = ({
       marginEnd={marginEnd}
       marginStart={marginStart}
       marginTop={marginTop}
+      data-testid={dataTestId}
     >
       {children}
     </StyledTypography>

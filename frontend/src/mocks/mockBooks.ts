@@ -218,6 +218,8 @@ export const mockBooks: BookProps[] = [
     language: "English",
     publisher: "Bloomsbury",
     isbn13: "9780747532699",
+    isbn10: "9780747532",
+    asin: "00000000000",
   },
   {
     id: "12",

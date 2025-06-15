@@ -20,6 +20,7 @@ interface ButtonProps {
   onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | 'button';
   color?: Colors;
+  dataTestId?: string;
 }
 
 const Button = ({
@@ -29,6 +30,7 @@ const Button = ({
   onClick,
   type,
   color,
+  dataTestId
 }: ButtonProps) => {
   const Component = variantToElement[variant];
 
@@ -40,6 +42,7 @@ const Button = ({
       bRadius={borderRadius}
       variant={variant}
       onClick={onClick}
+      data-testid={dataTestId}
     >
       {children}
     </StyledButton>
