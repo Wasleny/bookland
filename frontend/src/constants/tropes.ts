@@ -32,4 +32,5 @@ export const tropes = [
   "Enemies Forced to Work Together",
   "Magic",
   "Tournament",
+  "The Chosen One"
 ];

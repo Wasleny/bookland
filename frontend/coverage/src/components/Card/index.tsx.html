@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -126,7 +126,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,36 +141,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { ReactNode } from "react";
 import type {
   AlignItems,
@@ -180,7 +180,7 @@ import type {
   Spacing,
   Width,
 } from "../../types/common";
-<span class="cstat-no" title="statement not covered" >import { StyledCard } from "./styles";</span>
+import { StyledCard } from "./styles";
 &nbsp;
 interface CardProps {
   children: ReactNode;
@@ -195,36 +195,36 @@ interface CardProps {
   alignItems?: AlignItems | null
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const Card = ({</span>
-<span class="cstat-no" title="statement not covered" >  children,</span>
-<span class="cstat-no" title="statement not covered" >  verticalPadding = "md",</span>
-<span class="cstat-no" title="statement not covered" >  horizontalPadding = "md",</span>
-<span class="cstat-no" title="statement not covered" >  breakpoint = "md",</span>
-<span class="cstat-no" title="statement not covered" >  flexDirection = "column",</span>
-<span class="cstat-no" title="statement not covered" >  width = null,</span>
-<span class="cstat-no" title="statement not covered" >  gap = null,</span>
-<span class="cstat-no" title="statement not covered" >  justifyContent = null,</span>
-<span class="cstat-no" title="statement not covered" >  title,</span>
-<span class="cstat-no" title="statement not covered" >  alignItems = null</span>
-<span class="cstat-no" title="statement not covered" >}: CardProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;StyledCard</span>
-<span class="cstat-no" title="statement not covered" >      breakpoint={breakpoint}</span>
-<span class="cstat-no" title="statement not covered" >      verticalPadding={verticalPadding}</span>
-<span class="cstat-no" title="statement not covered" >      horizontalPadding={horizontalPadding}</span>
-<span class="cstat-no" title="statement not covered" >      flexDirection={flexDirection}</span>
-<span class="cstat-no" title="statement not covered" >      width={width}</span>
-<span class="cstat-no" title="statement not covered" >      gap={gap}</span>
-<span class="cstat-no" title="statement not covered" >      justifyContent={justifyContent}</span>
-<span class="cstat-no" title="statement not covered" >      title={title}</span>
-<span class="cstat-no" title="statement not covered" >      alignItems={alignItems}</span>
+const Card = ({
+  children,
+  verticalPadding = "md",
+  horizontalPadding = "md",
+  breakpoint = "md",
+  flexDirection = "column",
+  width = null,
+  gap = null,
+  justifyContent = null,
+  title,
+  alignItems = null
+}: CardProps) =&gt; {
+  return (
+    &lt;StyledCard
+      breakpoint={breakpoint}
+      verticalPadding={verticalPadding}
+      horizontalPadding={horizontalPadding}
+      flexDirection={flexDirection}
+      width={width}
+      gap={gap}
+      justifyContent={justifyContent}
+      title={title}
+      alignItems={alignItems}
     &gt;
-<span class="cstat-no" title="statement not covered" >      {children}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/StyledCard&gt;</span>
+      {children}
+    &lt;/StyledCard&gt;
   );
-<span class="cstat-no" title="statement not covered" >};</span>
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default Card;</span>
+export default Card;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -232,7 +232,7 @@ interface CardProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-15T22:30:54.043Z
+                at 2025-06-16T04:44:39.630Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

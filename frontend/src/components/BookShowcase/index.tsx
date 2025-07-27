@@ -28,7 +28,7 @@ const BookShowcase = () => {
   ];
 
   return (
-    <section>
+    <section data-testid="book-showcase">
       <Typography variant="h2">Destaques</Typography>
       <Carousel
         items={booksCarousel.map((book) => (

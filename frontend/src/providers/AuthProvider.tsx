@@ -2,6 +2,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { UserProps } from "../types/user";
 import { AuthContext } from "../contexts/AuthContext";
 import { mockUsers } from "../mocks/mockUsers";
+import { UserService } from "../services/user.service";
+import { mapUserFromApi } from "../utils/mappers/user.mapper";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -14,32 +16,25 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
 
-    if (storedUser) setCurrentUser(JSON.parse(storedUser));
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      user.birthdate = user.birthdate
+        ? new Date(user.birthdate.replace(/Z$/, ""))
+        : undefined;
+
+      setCurrentUser(user);
+    }
     setIsLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        const user = mockUsers.find(
-          (u) => u.email === email && u.password === password
-        );
+    const response = await UserService.login({ email, password });
 
-        if (user) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { password, ...userWithoutPassword } = user;
-          setCurrentUser(userWithoutPassword);
-          localStorage.setItem(
-            "currentUser",
-            JSON.stringify(userWithoutPassword)
-          );
+    const user = mapUserFromApi(response.data.user);
 
-          resolve();
-        } else {
-          reject(new Error("Email ou senha incorretos"));
-        }
-      }, 500);
-    });
+    setCurrentUser(user);
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem("token", response.data.token);
   };
 
   const register = async (

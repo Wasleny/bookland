@@ -14,6 +14,7 @@ import {
   Stats,
   StyledProfile,
 } from "./styles";
+import { genders } from "../../constants/gender";
 
 const Profile = () => {
   const { currentUser } = useAuth();
@@ -25,9 +26,9 @@ const Profile = () => {
           <GeneralInfo>
             <Avatar size="elementXl" path={currentUser?.avatarUrl ?? ""} />
             <Stats>
-              <Typography variant="body">{`${currentUser?.ratingCount} avaliações - média de ${currentUser?.averageRating} estrelas`}</Typography>
+              <Typography variant="body">{`${currentUser?.ratingsCount} avaliações - média de ${currentUser?.averageRating} estrelas`}</Typography>
               <Typography variant="body">
-                {currentUser?.reviewCount} resenhas
+                {currentUser?.reviewsCount} resenhas
               </Typography>
             </Stats>
           </GeneralInfo>
@@ -39,11 +40,22 @@ const Profile = () => {
             <Dl>
               <Row>
                 <dt>Detalhes</dt>
-                <dd>30 anos, mulher</dd>
+                <dd>
+                  {currentUser?.age ? `${currentUser?.age} anos, ` : ""}{" "}
+                  {genders[currentUser?.gender ?? "unspecified"]}
+                </dd>
               </Row>
               <Row>
                 <dt>Aniversário</dt>
-                <dd>01 de janeiro de 1995</dd>
+                <dd>
+                  {currentUser?.birthdate
+                    ? currentUser?.birthdate.toLocaleDateString("pt-BR", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : ""}
+                </dd>
               </Row>
             </Dl>
             <Shelves />

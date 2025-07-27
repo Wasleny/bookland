@@ -32,8 +32,15 @@ interface BooksModalProps {
 
 type BookFormProps = Omit<
   BookProps,
-  "id" | "averageRating" | "reviewsCount" | "editionCount" | "ratingCount"
->;
+  | "id"
+  | "averageRating"
+  | "reviewsCount"
+  | "editionCount"
+  | "ratingCount"
+  | "publicationDate"
+> & {
+  publicationDate: string | undefined;
+};
 
 const initialState = {
   title: "",
@@ -46,7 +53,7 @@ const initialState = {
   series: "",
   originalSeries: "",
   bookNumber: undefined,
-  synopis: "",
+  synopsis: "",
   format: undefined,
   pages: undefined,
   publicationDate: undefined,
@@ -71,8 +78,16 @@ const BooksModal = ({
 
   useEffect(() => {
     if (isUpdating && bookId) {
-      const recoveredAuthor = getBook(bookId);
-      setFormData(recoveredAuthor ?? initialState);
+      const recoveredBook = getBook(bookId);
+      const recoveredBookData = recoveredBook
+        ? {
+            ...recoveredBook,
+            publicationDate: recoveredBook?.publicationDate
+              ?.toISOString()
+              .split("T")[0],
+          }
+        : initialState;
+      setFormData(recoveredBookData);
     }
   }, [isUpdating, bookId, getBook]);
 
@@ -85,14 +100,21 @@ const BooksModal = ({
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    const formatedBook = {
+      ...formData,
+      publicationDate: formData.publicationDate
+        ? new Date(formData.publicationDate)
+        : undefined,
+    };
+
     try {
       if (isUpdating) {
         if (!bookId) return;
-        await updateBook(bookId, formData);
+        await updateBook(bookId, formatedBook);
 
         setIsUpdating(false);
       } else {
-        await addBook(formData);
+        await addBook(formatedBook);
       }
 
       handleClose();
@@ -313,15 +335,11 @@ const BooksModal = ({
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setFormData((prev) => ({
               ...prev,
-              publicationDate: new Date(e.target.value),
+              publicationDate: e.target.value,
             }))
           }
           type="date"
-          value={
-            formData.publicationDate
-              ? formData.publicationDate.toISOString().split("T")[0]
-              : ""
-          }
+          value={formData.publicationDate ? formData.publicationDate : ""}
         />
         <Input
           id="publisher"
@@ -393,7 +411,7 @@ const BooksModal = ({
             Cancelar
           </Button>
           <Button variant="submit" type="submit">
-            Criar
+            {isUpdating ? "Atualizar" : "Criar"}
           </Button>
         </FormActions>
       </Form>

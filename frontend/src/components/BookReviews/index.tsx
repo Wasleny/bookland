@@ -30,10 +30,10 @@ const BookReviews = ({ id }: BookReviewsProps) => {
               <Avatar path={review.user.avatarUrl} />
               <Typography variant="body">{review.user.name}</Typography>
               <Typography variant="avatarLegend">
-                {review.user.ratingCount} avaliações
+                {review.user.ratingsCount} avaliações
               </Typography>
               <Typography variant="avatarLegend">
-                {review.user.reviewCount} resenhas
+                {review.user.reviewsCount} resenhas
               </Typography>
             </header>
             <ReviewBody>

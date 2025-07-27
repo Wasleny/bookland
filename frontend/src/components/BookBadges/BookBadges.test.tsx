@@ -7,10 +7,10 @@ describe("Avatar", () => {
   it("renders with correct texts", () => {
     render(<BookBadges book={mockBooks[10]} />);
 
-    expect(screen.getByText("Fantasy")).toBeInTheDocument();
-    expect(screen.getByText("Young Adult")).toBeInTheDocument();
-    expect(screen.getByText("magic")).toBeInTheDocument();
-    expect(screen.getByText("found family")).toBeInTheDocument();
-    expect(screen.getByText("the chosen one")).toBeInTheDocument();
+    expect(screen.getByText("Fantasia")).toBeInTheDocument();
+    expect(screen.getByText("Young Adult (YA)")).toBeInTheDocument();
+    expect(screen.getByText("Magic")).toBeInTheDocument();
+    expect(screen.getByText("Found Family")).toBeInTheDocument();
+    expect(screen.getByText("The Chosen One")).toBeInTheDocument();
   });
 });
